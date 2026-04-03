@@ -1,0 +1,50 @@
+/* 1. Cambia las directivas antiguas por el nuevo import de v4 */
+@import "tailwindcss";
+
+/* 2. Todo lo demás se mantiene igual, pero ahora v4 lo reconocerá */
+
+/* 🌐 Fondo general */
+body {
+  @apply bg-gray-100 text-gray-800;
+}
+
+/* 🧱 Container */
+.container {
+  @apply max-w-5xl mx-auto px-4;
+}
+
+/* 🧾 Card */
+.card {
+  @apply bg-white rounded-2xl shadow p-5;
+}
+
+/* 🔘 Botones */
+.btn {
+  @apply px-4 py-2 rounded-xl font-medium transition;
+}
+
+.btn-primary {
+  @apply bg-blue-500 text-white hover:bg-blue-600;
+}
+
+.btn-danger {
+  @apply bg-red-500 text-white hover:bg-red-600;
+}
+
+/* 🧾 Inputs */
+.input {
+  @apply border rounded-xl px-3 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-400;
+}
+
+/* 🧱 Tabla */
+.table {
+  @apply w-full border-collapse;
+}
+
+.table th {
+  @apply text-left text-gray-500 border-b pb-2;
+}
+
+.table td {
+  @apply py-3 border-b;
+}
