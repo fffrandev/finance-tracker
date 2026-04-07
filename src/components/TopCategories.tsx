@@ -37,7 +37,7 @@ export default function TopCategories({ transactions, top = 5 }: Props) {
 
   return (
     <div className="bg-white border border-gray-200 p-5 rounded-3xl h-64">
-      <h2 className="text-gray-500 mb-2">Top categorías</h2>
+      <h2 className="mb-2 font-semibold text-gray-800">Top categorías</h2>
 
       {data.length === 0 ? (
         <p className="text-gray-400">Sin transacciones</p>

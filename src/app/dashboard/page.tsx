@@ -9,9 +9,9 @@ import TopCategories from "@/components/TopCategories";
 import MonthlyComparison from "@/components/MonthlyComparison";
 import AnimatedCard from "@/components/AnimatedCard";
 /* import ExportDashboard from "@/components/ExportDashboard"; */
-import IncomeExpenseBarChart from "@/components/IncomeExpenseBarChart";
 import Insights from "@/components/Insights";
 import AccountsSummary from "@/components/AccountsSummary";
+import BudgetsOverview from "@/components/BudgetsOverview";
 import DateFilter from "@/components/DateFilter";
 import TransferModal from "@/components/TransferModal";
 
@@ -47,15 +47,15 @@ export default function DashboardPage() {
     .reduce((acc, t) => acc + t.amount, 0);
 
   const balance = income - expense;
+  const expenseOnly = filtered.filter(
+    (t) => t.type === "expense" && t.category.id !== "transfer"
+  );
 
   return (
     <div className="space-y-8">
       {/* HEADER */}
       <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-3xl font-bold">Inicio</h1>
-          <p className="text-zinc-400 text-sm">Control total de tus finanzas</p>
-        </div>
+
       </div>
       {/* 🔥 FILTER ARRIBA */}
       <div className="bg-zinc-900 p-4 rounded-2xl border border-zinc-800">
@@ -73,6 +73,8 @@ export default function DashboardPage() {
         <AccountsSummary transactions={filtered} />
       </div>
 
+      {month && !range && <BudgetsOverview transactions={filtered} month={month} />}
+
       {/* CUENTAS */}
       {/* BALANCE */}
       <div className="grid md:grid-cols-3 gap-4">
@@ -87,17 +89,13 @@ export default function DashboardPage() {
       {/* CHARTS */}
       <div className="grid md:grid-cols-2 gap-4">
         <AnimatedCard>
-          <CategoryChart transactions={filtered} />
+          <CategoryChart transactions={expenseOnly} />
         </AnimatedCard>
 
         <AnimatedCard>
-          <IncomeExpenseBarChart transactions={filtered} />
+          <TopCategories transactions={expenseOnly} top={5} />
         </AnimatedCard>
       </div>
-
-      <AnimatedCard>
-        <TopCategories transactions={filtered} top={5} />
-      </AnimatedCard>
 
       {!range && (
         <AnimatedCard>

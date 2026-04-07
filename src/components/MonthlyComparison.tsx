@@ -42,15 +42,15 @@ export default function MonthlyComparison({ transactions }: Props) {
   return (
     <div className="bg-white border border-gray-200 p-5 rounded-3xl grid grid-cols-3 text-center">
       <div>
-        <h3 className="text-gray-500 text-sm">Ingresos</h3>
+        <h3 className="text-sm font-medium text-gray-700">Ingresos</h3>
         <p className="text-lg font-bold text-black">{format(changeIncome)}</p>
       </div>
       <div>
-        <h3 className="text-gray-500 text-sm">Gastos</h3>
+        <h3 className="text-sm font-medium text-gray-700">Gastos</h3>
         <p className="text-lg font-bold text-black">{format(changeExpense)}</p>
       </div>
       <div>
-        <h3 className="text-gray-500 text-sm">Balance</h3>
+        <h3 className="text-sm font-medium text-gray-700">Balance</h3>
         <p className="text-lg font-bold text-black">{format(changeBalance)}</p>
       </div>
     </div>
