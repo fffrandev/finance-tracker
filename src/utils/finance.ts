@@ -39,7 +39,7 @@ export const getBudgetAlertTone = (level: BudgetAlertLevel) => {
     case "exceeded":
       return "text-rose-700 bg-rose-100";
     default:
-      return "text-zinc-600 bg-zinc-100";
+      return "text-blue-600 bg-blue-50";
   }
 };
 

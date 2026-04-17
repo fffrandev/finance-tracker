@@ -35,9 +35,10 @@ export default function TransactionModal({
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.95, opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="w-full max-w-md rounded-3xl border border-zinc-200 bg-white p-6 text-black shadow-2xl"
+            className="w-full max-w-md rounded-3xl bg-white p-6 text-black shadow-2xl"
+            style={{ border: '1px solid #dad4c8' }}
           >
-            <h2 className="mb-5 text-xl font-bold text-black">
+            <h2 className="mb-5 text-[20px] font-bold text-black">
               {title}
             </h2>
 
@@ -52,7 +53,8 @@ export default function TransactionModal({
             {/* CANCELAR */}
             <button
               onClick={onClose}
-              className="mt-4 w-full rounded-xl border border-zinc-200 py-3 font-medium text-zinc-700 transition hover:bg-zinc-50"
+              className="mt-4 w-full rounded-xl border py-3 font-medium text-black transition hover:bg-[#faf9f7]"
+              style={{ borderColor: '#dad4c8' }}
             >
               Cancelar
             </button>

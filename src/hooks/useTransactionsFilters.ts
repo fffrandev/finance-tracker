@@ -35,7 +35,7 @@ export default function useTransactionsFilters(
     return () => clearTimeout(handler);
   }, [search, type, category, month, pathname, router, syncUrl]);
 
-  // 🔥 categorías filtradas por tipo
+  // categorías filtradas por tipo
   const categories = useMemo(() => {
     const list =
       type === "all"

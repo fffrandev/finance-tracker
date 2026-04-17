@@ -18,7 +18,7 @@ export type Transaction = {
   description: string;
   type: TransactionType;
   category: Category;
-  accountId: string; // 🔥 NUEVO
+  accountId: string; // NUEVO
   date: string;
 };
 
@@ -27,6 +27,6 @@ export type TransactionInput = {
   description: string;
   type: TransactionType;
   categoryId: string;
-  accountId: string; // 🔥 NUEVO
+  accountId: string; // NUEVO
   date: string;
 };

@@ -44,11 +44,11 @@ export default function Insights({ transactions }: Props) {
   if (!insights.length) return null;
 
   return (
-    <div className="bg-yellow-50 border border-yellow-200 p-4 rounded-3xl">
+    <div className="bg-white border p-4 rounded-3xl" style={{ borderColor: '#dad4c8' }}>
       <h3 className="font-semibold text-black mb-2">Insights</h3>
 
       {insights.map((text, i) => (
-        <p key={i} className="text-sm text-gray-700">
+        <p key={i} className="text-sm text-black">
           • {text}
         </p>
       ))}

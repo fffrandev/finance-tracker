@@ -29,7 +29,7 @@ export default function TransactionForm({
     description: initialData?.description ?? "",
     type: initialData?.type ?? "expense",
     categoryId: initialData?.categoryId ?? "",
-    accountId: initialData?.accountId ?? accounts[0]?.id ?? "", // 🔥
+    accountId: initialData?.accountId ?? accounts[0]?.id ?? "",
     date: initialData?.date ?? today,
   });
 
@@ -104,7 +104,8 @@ export default function TransactionForm({
             categoryId: "",
           })
         }
-        className="w-full border p-3 rounded-xl"
+        className="w-full border p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#fbbd41]"
+        style={{ borderColor: '#dad4c8' }}
       >
         <option value="expense">Gasto</option>
         <option value="income">Ingreso</option>
@@ -116,7 +117,8 @@ export default function TransactionForm({
         onChange={(e) =>
           setForm({ ...form, categoryId: e.target.value })
         }
-        className="w-full border p-3 rounded-xl"
+        className="w-full border p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#fbbd41]"
+        style={{ borderColor: '#dad4c8' }}
       >
         <option value="">Seleccionar categoría</option>
         {filteredCategories.map((c) => (
@@ -126,13 +128,14 @@ export default function TransactionForm({
         ))}
       </select>
 
-      {/* 🏦 CUENTA 🔥 */}
+      {/* CUENTA */}
       <select
         value={form.accountId}
         onChange={(e) =>
           setForm({ ...form, accountId: e.target.value })
         }
-        className="w-full border p-3 rounded-xl"
+        className="w-full border p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#fbbd41]"
+        style={{ borderColor: '#dad4c8' }}
       >
         <option value="">Seleccionar cuenta</option>
         {accounts.map((acc) => (
@@ -143,7 +146,7 @@ export default function TransactionForm({
       </select>
 
       {form.accountId && (
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-blue-600">
           Disponible:{" "}
           <span className="font-semibold text-black">
             {formatMoney(availableBalance, selectedAccount?.currency ?? "ARS")}
@@ -174,7 +177,8 @@ export default function TransactionForm({
             amount: parseNumber(value),
           });
         }}
-        className="w-full border p-3 rounded-xl text-lg font-medium"
+        className="w-full border p-3 rounded-xl text-lg font-medium focus:outline-none focus:ring-2 focus:ring-[#fbbd41]"
+        style={{ borderColor: '#dad4c8' }}
       />
 
       {/* DESCRIPCION */}
@@ -184,7 +188,8 @@ export default function TransactionForm({
         onChange={(e) =>
           setForm({ ...form, description: e.target.value })
         }
-        className="w-full border p-3 rounded-xl"
+        className="w-full border p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#fbbd41]"
+        style={{ borderColor: '#dad4c8' }}
       />
 
       {/* FECHA */}
@@ -194,7 +199,8 @@ export default function TransactionForm({
         onChange={(e) =>
           setForm({ ...form, date: e.target.value })
         }
-        className="w-full border p-3 rounded-xl"
+        className="w-full border p-3 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#fbbd41]"
+        style={{ borderColor: '#dad4c8' }}
       />
 
       {/* BOTÓN */}
@@ -206,7 +212,7 @@ export default function TransactionForm({
           !form.accountId ||
           insufficientFunds
         }
-        className="w-full rounded-xl bg-[#FACC15] py-3 font-semibold text-[#020617] shadow transition hover:brightness-95 disabled:opacity-40"
+        className="w-full rounded-xl bg-[#fbbd41] py-3 font-semibold text-black shadow transition hover:brightness-95 disabled:opacity-40 hover:shadow-lg"
       >
         {submitText}
       </button>

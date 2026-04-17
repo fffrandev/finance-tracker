@@ -1,11 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import TT from "@/assets/TT.png";
+import TT from "../../assets/TT.png";
 import { useAccounts } from "@/context/AccountsContext";
 import { useTransactions } from "@/context/TransactionsContext";
 import { Transaction } from "@/types/transaction";
 import { formatMoney } from "@/utils/currency";
+import { motion } from "framer-motion";
 
 type Props = {
   transactions: Transaction[];
@@ -15,65 +16,107 @@ export default function AccountsSummary({ transactions }: Props) {
   const { accounts } = useAccounts();
   const { getAccountBalanceFromList } = useTransactions();
 
-  // Colores tipo gradientes de tarjetas (como Amex, Visa, etc)
   const gradients = [
-    "bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900",
-    "bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900",
-    "bg-gradient-to-br from-purple-600 via-purple-700 to-purple-900",
-    "bg-gradient-to-br from-rose-600 via-rose-700 to-rose-900",
-    "bg-gradient-to-br from-amber-600 via-amber-700 to-amber-900",
+    "linear-gradient(135deg, #f8cc65 0%, #fbbd41 100%)",
+    "linear-gradient(135deg, #84e7a5 0%, #078a52 100%)",
+    "linear-gradient(135deg, #3bd3fd 0%, #0089ad 100%)",
+    "linear-gradient(135deg, #c1b0ff 0%, #43089f 100%)",
+    "linear-gradient(135deg, #fc7981 0%, #f8cc65 100%)",
+    "linear-gradient(135deg, #01418d 0%, #3bd3fd 100%)",
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
   return (
-    <div className="grid md:grid-cols-3 gap-5">
+    <motion.div
+      className="grid gap-5 md:grid-cols-3"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
       {accounts.map((acc, idx) => {
         const balance = getAccountBalanceFromList(acc.id, transactions);
-        const gradientClass = gradients[idx % gradients.length];
+        const gradient = gradients[idx % gradients.length];
 
         return (
-          <div
+          <motion.div
             key={acc.id}
-            className={`relative h-48 rounded-2xl p-6 shadow-xl transition-all duration-300 hover:shadow-2xl hover:scale-105 cursor-pointer overflow-hidden ${gradientClass}`}
+            variants={cardVariants}
+            whileHover={{ y: -6 }}
+            className="relative overflow-hidden rounded-[28px] border border-[#dad4c8] bg-white"
+            style={{
+              boxShadow:
+                "rgba(0,0,0,0.1) 0px 1px 1px, rgba(0,0,0,0.04) 0px -1px 1px inset, rgba(0,0,0,0.05) 0px -0.5px 1px",
+            }}
           >
-            {/* Efecto de brillo de fondo */}
-            <div className="absolute inset-0 opacity-20">
-              <div className="absolute -top-40 -right-40 w-80 h-80 bg-white rounded-full blur-3xl"></div>
-            </div>
-
-            {/* Contenido */}
-            <div className="relative z-10 h-full flex flex-col justify-between">
-              {/* Header */}
-              <div className="flex justify-between items-start">
+            <div
+              className="flex min-h-[190px] flex-col justify-between p-5"
+              style={{ background: gradient }}
+            >
+              <motion.div
+                className="flex justify-between items-start"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.2 }}
+              >
                 <div>
-                  <p className="text-xs font-semibold text-white/70 uppercase tracking-wider">Saldo disponible</p>
-                  <p className="text-2xl font-bold text-white mt-2">
+                  <p className="text-xs font-semibold uppercase tracking-[1.08px] text-black/70">
+                    Saldo disponible
+                  </p>
+                  <p className="mt-1 text-[30px] font-semibold -tracking-[0.06em] text-black">
                     {formatMoney(balance, acc.currency)}
                   </p>
                 </div>
-                <div className="text-3xl font-bold text-white/30">{acc.currency}</div>
-              </div>
+                <div className="rounded-full border border-black/10 bg-white/70 px-3 py-1.5 text-xs font-semibold uppercase tracking-[1.08px] text-black">
+                  {acc.currency}
+                </div>
+              </motion.div>
 
-              {/* Footer - Nombre de la cuenta */}
-              <div className="flex justify-between items-end">
+              <motion.div
+                className="flex justify-between items-end"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+              >
                 <div>
-                  <p className="text-xs text-white/60 uppercase tracking-wider">Cuenta</p>
-                  <p className="text-lg font-semibold text-white mt-1">{acc.name}</p>
+                  <p className="text-xs font-semibold uppercase tracking-[1.08px] text-black/65">
+                    Cuenta
+                  </p>
+                  <p className="mt-1 text-lg font-semibold text-black">{acc.name}</p>
                 </div>
-                {/* Logo TT */}
-                <div className="w-12 h-12 relative">
+                <motion.div className="relative h-10 w-10" whileHover={{ scale: 1.05 }}>
                   <Image
-                    src={require("../../assets/TT.png")}
+                    src={TT}
                     alt="logo"
-                    width={48}
-                    height={48}
-                    className="w-full h-full object-contain"
+                    width={40}
+                    height={40}
+                    className="h-full w-full object-contain"
                   />
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
         );
       })}
-    </div>
+    </motion.div>
   );
 }

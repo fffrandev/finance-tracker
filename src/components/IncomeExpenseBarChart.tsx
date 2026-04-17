@@ -1,93 +1,124 @@
 "use client";
 
+import { useMemo } from "react";
 import {
   BarChart,
   Bar,
+  Cell,
+  Tooltip,
   XAxis,
   YAxis,
   CartesianGrid,
   ResponsiveContainer,
-  Tooltip,
-  Cell,
 } from "recharts";
 import { Transaction } from "@/types/transaction";
-import { useMemo } from "react";
-import CustomTooltip from "./CustomTooltip";
+import { formatMoney, getTransactionBaseAmount } from "@/utils/currency";
+import { motion } from "framer-motion";
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 
 type Props = {
   transactions: Transaction[];
 };
 
+function CustomTooltip({
+  active,
+  payload,
+}: {
+  active?: boolean;
+  payload?: Array<{ value: number; name: string }>;
+}) {
+  if (active && payload && payload.length) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="bg-white p-3 rounded-lg shadow-lg"
+        style={{ borderColor: '#dad4c8', border: '1px solid #dad4c8' }}
+      >
+        {payload.map((entry, index) => (
+          <div
+            key={index}
+            className="text-sm font-semibold"
+            style={{ color: entry.value > 0 ? "#078a52" : "#fc7981" }}
+          >
+            {entry.name}: {formatMoney(entry.value)}
+          </div>
+        ))}
+      </motion.div>
+    );
+  }
+  return null;
+}
+
 export default function IncomeExpenseBarChart({ transactions }: Props) {
   const data = useMemo(() => {
-    const map: Record<string, { income: number; expense: number }> = {};
-
-    // 🧠 Agrupación inteligente
-    const useWeekly = transactions.length > 20;
+    const monthlyData: Record<
+      string,
+      { date: string; income: number; expense: number }
+    > = {};
 
     transactions.forEach((t) => {
-      let key = t.date;
-
-      if (useWeekly) {
-        const week = Math.ceil(new Date(t.date).getDate() / 7);
-        key = `${t.date.slice(0, 7)}-W${week}`;
+      const date = t.date.substring(0, 7);
+      if (!monthlyData[date]) {
+        monthlyData[date] = { date, income: 0, expense: 0 };
       }
 
-      if (!map[key]) map[key] = { income: 0, expense: 0 };
-
-      if (t.type === "income") map[key].income += t.amount;
-      else map[key].expense += t.amount;
+      const amount = getTransactionBaseAmount(t);
+      if (t.type === "income") {
+        monthlyData[date].income += amount;
+      } else {
+        monthlyData[date].expense += amount;
+      }
     });
 
-    return Object.entries(map).map(([date, value]) => ({
-      date,
-      ...value,
-    }));
+    return Object.values(monthlyData)
+      .sort((a, b) => a.date.localeCompare(b.date))
+      .slice(-12);
   }, [transactions]);
 
-  // 🔥 detectar pico de gasto
-  const maxExpense = Math.max(...data.map(d => d.expense || 0));
+  if (data.length === 0) {
+    return null;
+  }
 
   return (
-    <div className="bg-white p-5 rounded-2xl shadow h-64">
-      <h2 className="text-gray-500 mb-2">📊 Flujo de dinero</h2>
+    <motion.div
+      className="glass p-6 rounded-3xl h-96 flex flex-col"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.1 }}
+    >
+      <motion.div className="flex items-center gap-2 mb-6">
+        <TrendingUpIcon className="text-[#078a52]" />
+        <motion.h2
+          className="font-black text-[20px] bg-gradient-to-r from-[#078a52] to-[#3bd3fd] bg-clip-text text-transparent uppercase tracking-widest"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: 0.2 }}
+        >
+          Flujo de dinero
+        </motion.h2>
+      </motion.div>
 
-      <ResponsiveContainer width="100%" height="100%">
+      <ResponsiveContainer width="100%" height={300}>
         <BarChart data={data}>
           <defs>
-            <linearGradient id="incomeGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#22c55e" stopOpacity={1} />
-              <stop offset="100%" stopColor="#22c55e" stopOpacity={0.6} />
+            <linearGradient id="incomeGradientPro" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#078a52" stopOpacity={1} />
+              <stop offset="100%" stopColor="#078a52" stopOpacity={0.3} />
             </linearGradient>
-
-            <linearGradient id="expenseGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#ef4444" stopOpacity={1} />
-              <stop offset="100%" stopColor="#ef4444" stopOpacity={0.6} />
+            <linearGradient id="expenseGradientPro" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#fc7981" stopOpacity={1} />
+              <stop offset="100%" stopColor="#fc7981" stopOpacity={0.3} />
             </linearGradient>
           </defs>
-
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" />
-          <YAxis />
+          <CartesianGrid strokeDasharray="3 3" stroke="rgba(218, 212, 200, 0.4)" />
+          <XAxis dataKey="date" stroke="#9f9b93" />
+          <YAxis stroke="#9f9b93" />
           <Tooltip content={<CustomTooltip />} />
-
-          <Bar dataKey="income" fill="url(#incomeGradient)" radius={[6, 6, 0, 0]}>
-            {data.map((entry, index) => (
-              <Cell key={index} />
-            ))}
-          </Bar>
-
-          <Bar dataKey="expense" fill="url(#expenseGradient)" radius={[6, 6, 0, 0]}>
-            {data.map((entry, index) => (
-              <Cell
-                key={index}
-                stroke={entry.expense === maxExpense ? "#000" : undefined}
-                strokeWidth={entry.expense === maxExpense ? 2 : 0}
-              />
-            ))}
-          </Bar>
+          <Bar dataKey="income" fill="url(#incomeGradientPro)" radius={[8, 8, 0, 0]} />
+          <Bar dataKey="expense" fill="url(#expenseGradientPro)" radius={[8, 8, 0, 0]} />
         </BarChart>
       </ResponsiveContainer>
-    </div>
+    </motion.div>
   );
 }

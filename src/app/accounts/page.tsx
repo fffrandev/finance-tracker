@@ -4,33 +4,25 @@ import { useMemo, useState } from "react";
 import { useAccounts } from "@/context/AccountsContext";
 import { useTransactions } from "@/context/TransactionsContext";
 import TransferModal from "@/components/TransferModal";
-import AddIcon from "@mui/icons-material/Add";
-import CloseIcon from "@mui/icons-material/Close";
 import { CurrencyCode } from "@/types/account";
 import { formatMoney } from "@/utils/currency";
-import { useSavingGoals } from "@/context/SavingGoalsContext";
-import { getSavingGoalProgress } from "@/utils/finance";
+import { motion } from "framer-motion";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import Image from "next/image";
+import TT from "../../../assets/TT.png";
 
 export default function AccountsPage() {
   const { accounts, addAccount, updateAccount, deleteAccount } = useAccounts();
   const { getAccountBalance, transactions } = useTransactions();
-  const { savingGoals, addSavingGoal, deleteSavingGoal } = useSavingGoals();
 
   const [name, setName] = useState("");
   const [currency, setCurrency] = useState<CurrencyCode>("ARS");
+  const [transferOpen, setTransferOpen] = useState(false);
+  const [createOpen, setCreateOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editingName, setEditingName] = useState("");
   const [editingCurrency, setEditingCurrency] = useState<CurrencyCode>("ARS");
-  const [transferOpen, setTransferOpen] = useState(false);
-  const [createOpen, setCreateOpen] = useState(false);
-  const [goalOpen, setGoalOpen] = useState(false);
-  const [goalForm, setGoalForm] = useState({
-    name: "",
-    targetAmount: "",
-    accountId: "",
-    targetDate: new Date().toISOString().slice(0, 10),
-    currency: "ARS" as CurrencyCode,
-  });
 
   const sortedAccounts = useMemo(
     () =>
@@ -66,296 +58,235 @@ export default function AccountsPage() {
     setEditingCurrency("ARS");
   };
 
-  const handleAddGoal = async () => {
-    const amount = Number(goalForm.targetAmount);
-    if (!goalForm.name.trim() || !goalForm.accountId || !amount) return;
-
-    const created = await addSavingGoal({
-      name: goalForm.name.trim(),
-      targetAmount: amount,
-      accountId: goalForm.accountId,
-      targetDate: goalForm.targetDate,
-      currency: goalForm.currency,
-    });
-    if (!created) return;
-
-    setGoalForm({
-      name: "",
-      targetAmount: "",
-      accountId: "",
-      targetDate: new Date().toISOString().slice(0, 10),
-      currency: "ARS",
-    });
-    setGoalOpen(false);
-  };
+  const gradients = [
+    "linear-gradient(135deg, #f8cc65 0%, #fbbd41 100%)",
+    "linear-gradient(135deg, #84e7a5 0%, #078a52 100%)",
+    "linear-gradient(135deg, #3bd3fd 0%, #0089ad 100%)",
+    "linear-gradient(135deg, #c1b0ff 0%, #43089f 100%)",
+    "linear-gradient(135deg, #fc7981 0%, #f8cc65 100%)",
+    "linear-gradient(135deg, #01418d 0%, #3bd3fd 100%)",
+  ];
 
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between gap-4">
-        <h1 className="text-3xl font-bold">Cuentas</h1>
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => setTransferOpen(true)}
-            className="rounded-xl border border-zinc-700 bg-zinc-900 px-4 py-2 text-sm font-semibold text-zinc-100 transition hover:border-zinc-500 hover:bg-zinc-800"
-          >
-            Transferir
-          </button>
-          <button
-            onClick={() => setCreateOpen(true)}
-            className="flex h-11 w-11 items-center justify-center rounded-full bg-[#FACC15] text-black transition hover:brightness-95"
-            aria-label="Agregar cuenta"
-          >
-            <AddIcon fontSize="small" />
-          </button>
-        </div>
+        <button
+          onClick={() => setTransferOpen(true)}
+          className="rounded-full border px-5 py-3 text-sm font-semibold text-black transition hover:translate-y-[-2px]"
+          style={{
+            backgroundColor: "#fbbd41",
+            borderColor: "#000000",
+            boxShadow:
+              "rgba(0,0,0,0.1) 0px 1px 1px, rgba(0,0,0,0.04) 0px -1px 1px inset, rgba(0,0,0,0.05) 0px -0.5px 1px",
+          }}
+        >
+          Transferir
+        </button>
+        <button
+          onClick={() => setCreateOpen(true)}
+          className="flex h-11 w-11 items-center justify-center rounded-full border text-lg font-bold text-black transition hover:translate-y-[-2px]"
+          style={{
+            backgroundColor: "#fbbd41",
+            borderColor: "#000000",
+            boxShadow:
+              "rgba(0,0,0,0.1) 0px 1px 1px, rgba(0,0,0,0.04) 0px -1px 1px inset, rgba(0,0,0,0.05) 0px -0.5px 1px",
+          }}
+          aria-label="Agregar cuenta"
+        >
+          +
+        </button>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-        {sortedAccounts.map((account) => (
+      <motion.div className="grid md:grid-cols-3 gap-6">
+        {sortedAccounts.map((account, idx) => {
+          const balance = getAccountBalance(account.id);
+          const gradient = gradients[idx % gradients.length];
+
+          return (
+            <motion.div
+              key={account.id}
+              whileHover={{ y: -6 }}
+              className="overflow-hidden rounded-[28px] border border-[#dad4c8] bg-white"
+              style={{
+                boxShadow:
+                  "rgba(0,0,0,0.1) 0px 1px 1px, rgba(0,0,0,0.04) 0px -1px 1px inset, rgba(0,0,0,0.05) 0px -0.5px 1px",
+              }}
+            >
+              <div
+                className="flex min-h-[190px] flex-col justify-between p-5"
+                style={{ background: gradient }}
+              >
+                {editingId === account.id ? (
+                  <div className="space-y-3">
+                    <input
+                      className="w-full rounded-xl border border-black/10 bg-white/85 px-4 py-3 text-black outline-none transition"
+                      value={editingName}
+                      onChange={(e) => setEditingName(e.target.value)}
+                    />
+                    <select
+                      className="w-full rounded-xl border border-black/10 bg-white/85 px-4 py-3 text-black outline-none transition"
+                      value={editingCurrency}
+                      onChange={(e) => setEditingCurrency(e.target.value as CurrencyCode)}
+                    >
+                      <option value="ARS">Pesos argentinos</option>
+                      <option value="USD">Dólares</option>
+                      <option value="EUR">Euros</option>
+                    </select>
+                    <div className="flex gap-2 pt-2">
+                      <button
+                        onClick={handleSaveEdit}
+                        className="flex-1 rounded-xl border border-black bg-[#fbbd41] px-3 py-2 text-sm font-semibold text-black transition hover:translate-y-[-1px]"
+                      >
+                        Guardar
+                      </button>
+                      <button
+                        onClick={() => setEditingId(null)}
+                        className="flex-1 rounded-xl border border-black/15 bg-white/70 px-3 py-2 text-sm font-semibold text-black transition hover:translate-y-[-1px]"
+                      >
+                        Cancelar
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <motion.div className="flex justify-between items-start">
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-[1.08px] text-black/70">
+                          Saldo disponible
+                        </p>
+                        <p className="mt-1 text-[30px] font-semibold -tracking-[0.06em] text-black">
+                          {formatMoney(balance, account.currency)}
+                        </p>
+                      </div>
+                      <div className="rounded-full border border-black/10 bg-white/70 px-3 py-1.5 text-xs font-semibold uppercase tracking-[1.08px] text-black">
+                        {account.currency}
+                      </div>
+                    </motion.div>
+
+                    <motion.div className="flex justify-between items-end">
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-[1.08px] text-black/65">
+                          Cuenta
+                        </p>
+                        <p className="mt-1 text-lg font-semibold text-black">{account.name}</p>
+                      </div>
+                      <Image
+                        src={TT}
+                        alt="logo"
+                        width={40}
+                        height={40}
+                        className="h-10 w-10 object-contain"
+                      />
+                    </motion.div>
+                  </>
+                )}
+              </div>
+
+              {editingId !== account.id && (
+                <div className="flex gap-2 border-t border-dashed border-[#dad4c8] bg-[#faf9f7] p-3">
+                  <button
+                    onClick={() => handleEdit(account.id, account.name, account.currency)}
+                    className="flex flex-1 items-center justify-center gap-1 rounded-xl border border-[#dad4c8] bg-white px-3 py-2.5 text-xs font-semibold uppercase tracking-[1.08px] text-[#55534e] transition hover:translate-y-[-1px]"
+                    title="Editar"
+                  >
+                    <EditIcon className="w-4 h-4" />
+                    Editar
+                  </button>
+                  <button
+                    onClick={() => {
+                      const hasTransactions = transactions.some(
+                        (t) => t.accountId === account.id
+                      );
+                      if (hasTransactions) {
+                        alert("No podés eliminar una cuenta que tiene movimientos");
+                        return;
+                      }
+                      if (confirm("¿Eliminar cuenta?")) {
+                        void deleteAccount(account.id);
+                      }
+                    }}
+                    className="flex flex-1 items-center justify-center gap-1 rounded-xl border px-3 py-2.5 text-xs font-semibold uppercase tracking-[1.08px] transition hover:translate-y-[-1px]"
+                    style={{
+                      borderColor: "rgba(252, 121, 129, 0.4)",
+                      backgroundColor: "rgba(252, 121, 129, 0.1)",
+                      color: "#fc7981",
+                    }}
+                    title="Eliminar"
+                  >
+                    <DeleteIcon className="w-4 h-4" />
+                    Eliminar
+                  </button>
+                </div>
+              )}
+            </motion.div>
+          );
+        })}
+      </motion.div>
+
+      {createOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
           <div
-            key={account.id}
-            className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-black/5"
+            className="mx-4 w-full max-w-md rounded-[28px] border bg-white p-8"
+            style={{
+              borderColor: "#dad4c8",
+              boxShadow:
+                "rgba(0,0,0,0.1) 0px 1px 1px, rgba(0,0,0,0.04) 0px -1px 1px inset, rgba(0,0,0,0.05) 0px -0.5px 1px",
+            }}
           >
-            {editingId === account.id ? (
-              <div className="space-y-3">
+            <h2 className="mb-6 text-[20px] font-semibold text-black">Nueva cuenta</h2>
+
+            <div className="space-y-4">
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-[#55534e]">Nombre</label>
                 <input
-                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-zinc-950 outline-none transition focus:border-zinc-400 focus:bg-white"
-                  value={editingName}
-                  onChange={(e) => setEditingName(e.target.value)}
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Ej: Banco Nación, Billetera, etc"
+                  className="w-full rounded-xl border px-4 py-3 font-medium text-black outline-none transition"
+                  style={{ borderColor: "#dad4c8", backgroundColor: "#faf9f7" }}
                 />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-semibold text-[#55534e]">Moneda</label>
                 <select
-                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 text-zinc-950 outline-none transition focus:border-zinc-400 focus:bg-white"
-                  value={editingCurrency}
-                  onChange={(e) => setEditingCurrency(e.target.value as CurrencyCode)}
+                  value={currency}
+                  onChange={(e) => setCurrency(e.target.value as CurrencyCode)}
+                  className="w-full rounded-xl border px-4 py-3 font-medium text-black outline-none transition"
+                  style={{ borderColor: "#dad4c8", backgroundColor: "#faf9f7" }}
                 >
                   <option value="ARS">Pesos argentinos</option>
                   <option value="USD">Dólares</option>
                   <option value="EUR">Euros</option>
                 </select>
-                <div className="flex gap-2">
-                  <button
-                    onClick={handleSaveEdit}
-                    className="flex-1 rounded-xl bg-[#FACC15] px-3 py-2 text-sm font-semibold text-black transition hover:brightness-95"
-                  >
-                    Guardar
-                  </button>
-                  <button
-                    onClick={() => {
-                      setEditingId(null);
-                      setEditingName("");
-                    }}
-                    className="flex-1 rounded-xl border border-zinc-200 px-3 py-2 text-sm font-medium text-zinc-700 transition hover:bg-zinc-50"
-                  >
-                    Cancelar
-                  </button>
-                </div>
               </div>
-            ) : (
-              <div>
-                <h2 className="text-xl font-semibold text-zinc-950">{account.name}</h2>
-                <p className="mt-1 text-sm text-zinc-500">{account.currency}</p>
-              </div>
-            )}
-            <p className="mt-3 text-2xl font-bold text-zinc-950">
-              {formatMoney(getAccountBalance(account.id), account.currency)}
-            </p>
+            </div>
 
-            {editingId !== account.id && (
-              <div className="mt-5 flex gap-2">
-                <button
-                  onClick={() => handleEdit(account.id, account.name, account.currency)}
-                  className="flex-1 rounded-xl border border-zinc-200 px-3 py-2 text-sm font-semibold text-zinc-700 transition hover:bg-zinc-50"
-                >
-                  Editar
-                </button>
-
-                <button
-                  onClick={() => {
-                    const hasTransactions = transactions.some(
-                      (transaction) => transaction.accountId === account.id
-                    );
-
-                    if (hasTransactions) {
-                      alert("No podés eliminar una cuenta que ya tiene movimientos");
-                      return;
-                    }
-
-                    if (!confirm("¿Eliminar cuenta?")) return;
-                    void deleteAccount(account.id);
-                  }}
-                  className="flex-1 rounded-xl bg-rose-50 px-3 py-2 text-sm font-semibold text-rose-600 transition hover:bg-rose-100"
-                >
-                  Eliminar
-                </button>
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
-
-      <div className="rounded-2xl bg-white p-5 text-black shadow-sm ring-1 ring-black/5">
-        <div className="mb-4 flex items-center justify-between gap-4">
-          <div>
-            <h2 className="text-xl font-semibold">Metas de ahorro</h2>
-            <p className="mt-1 text-sm text-zinc-500">Objetivo, progreso y fecha estimada por cuenta.</p>
-          </div>
-          <button
-            onClick={() => setGoalOpen(true)}
-            className="flex h-11 w-11 items-center justify-center rounded-full bg-[#FACC15] text-black transition hover:brightness-95"
-            aria-label="Agregar meta"
-          >
-            <AddIcon fontSize="small" />
-          </button>
-        </div>
-
-        {savingGoals.length === 0 ? (
-          <p className="text-sm text-zinc-500">Todavía no hay metas cargadas.</p>
-        ) : (
-          <div className="grid gap-4 md:grid-cols-2">
-            {savingGoals.map((goal) => {
-              const progress = getSavingGoalProgress(goal, accounts, transactions);
-              return (
-                <div key={goal.id} className="rounded-2xl border border-zinc-200 bg-zinc-50 p-4">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <p className="font-semibold text-zinc-950">{goal.name}</p>
-                      <p className="mt-1 text-sm text-zinc-500">
-                        {progress.account?.name ?? "Cuenta"} · vence {goal.targetDate}
-                      </p>
-                    </div>
-                    <button
-                      onClick={() => void deleteSavingGoal(goal.id)}
-                      className="rounded-xl bg-rose-50 px-3 py-2 text-sm font-semibold text-rose-600 transition hover:bg-rose-100"
-                    >
-                      Eliminar
-                    </button>
-                  </div>
-                  <div className="mt-4 h-2 rounded-full bg-zinc-200">
-                    <div className="h-2 rounded-full bg-[#FACC15]" style={{ width: `${progress.progress}%` }} />
-                  </div>
-                  <div className="mt-3 flex flex-wrap items-center justify-between gap-3 text-sm">
-                    <span className="font-medium text-zinc-700">
-                      {formatMoney(progress.currentAmount, goal.currency)} / {formatMoney(goal.targetAmount, goal.currency)}
-                    </span>
-                    <span className="text-zinc-500">
-                      {progress.estimatedMonths ? `${progress.estimatedMonths} meses estimados` : "Sin proyección"}
-                    </span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        )}
-      </div>
-
-      <TransferModal open={transferOpen} onClose={() => setTransferOpen(false)} />
-
-      {createOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 backdrop-blur-sm">
-          <div className="w-full max-w-md rounded-3xl border border-zinc-200 bg-white p-6 text-black shadow-2xl">
-            <div className="mb-5 flex items-center justify-between gap-4">
-              <h2 className="text-xl font-bold">Nueva cuenta</h2>
+            <div className="mt-6 flex gap-3">
               <button
                 onClick={() => setCreateOpen(false)}
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 text-zinc-700 transition hover:bg-zinc-50"
-                aria-label="Cerrar modal"
+                className="flex-1 rounded-xl border px-4 py-3 font-semibold text-[#55534e] transition hover:translate-y-[-1px]"
+                style={{ borderColor: "#dad4c8", backgroundColor: "#faf9f7" }}
               >
-                <CloseIcon fontSize="small" />
+                Cancelar
               </button>
-            </div>
-
-            <div className="space-y-4">
-              <input
-                className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-zinc-400 focus:bg-white"
-                placeholder="Nombre de la cuenta"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-
-              <select
-                className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-zinc-400 focus:bg-white"
-                value={currency}
-                onChange={(e) => setCurrency(e.target.value as CurrencyCode)}
-              >
-                <option value="ARS">Pesos argentinos</option>
-                <option value="USD">Dólares</option>
-                <option value="EUR">Euros</option>
-              </select>
-
               <button
                 onClick={handleAdd}
-                className="mx-auto block rounded-xl bg-[#FACC15] px-3 py-2 text-sm font-semibold text-black transition hover:brightness-95"
+                className="flex-1 rounded-xl border px-4 py-3 font-semibold text-black transition hover:translate-y-[-1px]"
+                style={{ backgroundColor: "#fbbd41", borderColor: "#000000" }}
               >
-                Agregar
+                Crear cuenta
               </button>
             </div>
           </div>
         </div>
       )}
 
-      {goalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 backdrop-blur-sm">
-          <div className="w-full max-w-md rounded-3xl border border-zinc-200 bg-white p-6 text-black shadow-2xl">
-            <div className="mb-5 flex items-center justify-between gap-4">
-              <h2 className="text-xl font-bold">Nueva meta</h2>
-              <button
-                onClick={() => setGoalOpen(false)}
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 text-zinc-700 transition hover:bg-zinc-50"
-                aria-label="Cerrar modal"
-              >
-                <CloseIcon fontSize="small" />
-              </button>
-            </div>
-
-            <div className="space-y-4">
-              <input
-                className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-zinc-400 focus:bg-white"
-                placeholder="Nombre de la meta"
-                value={goalForm.name}
-                onChange={(e) => setGoalForm((current) => ({ ...current, name: e.target.value }))}
-              />
-              <input
-                type="number"
-                className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-zinc-400 focus:bg-white"
-                placeholder="Monto objetivo"
-                value={goalForm.targetAmount}
-                onChange={(e) => setGoalForm((current) => ({ ...current, targetAmount: e.target.value }))}
-              />
-              <select
-                className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-zinc-400 focus:bg-white"
-                value={goalForm.accountId}
-                onChange={(e) => {
-                  const account = accounts.find((item) => item.id === e.target.value);
-                  setGoalForm((current) => ({
-                    ...current,
-                    accountId: e.target.value,
-                    currency: account?.currency ?? current.currency,
-                  }));
-                }}
-              >
-                <option value="">Cuenta asociada</option>
-                {accounts.map((account) => (
-                  <option key={account.id} value={account.id}>
-                    {account.name}
-                  </option>
-                ))}
-              </select>
-              <input
-                type="date"
-                className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-zinc-400 focus:bg-white"
-                value={goalForm.targetDate}
-                onChange={(e) => setGoalForm((current) => ({ ...current, targetDate: e.target.value }))}
-              />
-              <button
-                onClick={handleAddGoal}
-                className="mx-auto block rounded-xl bg-[#FACC15] px-3 py-2 text-sm font-semibold text-black transition hover:brightness-95"
-              >
-                Agregar
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <TransferModal
+        open={transferOpen}
+        onClose={() => setTransferOpen(false)}
+      />
     </div>
   );
 }

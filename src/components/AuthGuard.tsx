@@ -2,8 +2,10 @@
 
 import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import { Skeleton } from "boneyard-js/react";
 import { useAuth } from "@/context/AuthContext";
 import AuthForm from "./AuthForm";
+import "@/bones/registry";
 
 export default function AuthGuard({ children }: { children: React.ReactNode }) {
   const { ready, loading, session } = useAuth();
@@ -26,27 +28,52 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
 
   if (!ready || loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#020617] text-zinc-300">
-        Cargando...
-      </div>
+      <Skeleton name="auth-loading" loading animate="pulse" transition={300}>
+        <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-white to-[#f5f3ef] px-4">
+          <div className="w-full max-w-5xl grid gap-10 md:grid-cols-[1.2fr_0.8fr] items-center">
+            <div className="space-y-6">
+              <div className="h-6 w-40 rounded-md bg-gray-200" />
+              <div className="h-10 w-80 rounded-md bg-gray-200" />
+              <div className="space-y-3">
+                <div className="h-4 w-full rounded-md bg-gray-200" />
+                <div className="h-4 w-5/6 rounded-md bg-gray-200" />
+              </div>
+            </div>
+            <div className="space-y-4">
+              <div className="h-12 rounded-xl bg-gray-200" />
+              <div className="h-12 rounded-xl bg-gray-200" />
+              <div className="h-12 rounded-xl bg-gray-200" />
+            </div>
+          </div>
+        </div>
+      </Skeleton>
     );
   }
 
   if (!session) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#020617] px-4">
-        <div className="w-full max-w-5xl grid gap-8 md:grid-cols-[1.2fr_0.8fr] md:items-center">
-          <div className="space-y-5">
-            <p className="text-sm font-semibold uppercase tracking-[0.24em] text-[#FACC15]">
-              Finance Tracker
-            </p>
-            <h1 className="text-4xl font-bold text-white md:text-5xl">
-              Tus cuentas, movimientos y reportes en un solo lugar.
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-white to-[#f5f3ef] px-4">
+        <div className="w-full max-w-6xl grid gap-12 md:grid-cols-[1.2fr_0.8fr] items-center">
+          
+          {/* LADO IZQUIERDO */}
+          <div className="space-y-6">
+            <h1 className="text-4xl md:text-5xl font-black leading-tight text-black">
+              Controlá tus finanzas
+              <span className="block text-[#fbbd41]">sin esfuerzo</span>
             </h1>
-            <p className="max-w-xl text-base text-zinc-400">
-              Iniciá sesión para sincronizar web y mobile con Supabase y mantener tus finanzas guardadas de forma segura.
+
+            <p className="text-lg text-gray-700 max-w-md">
+              Visualizá tus movimientos, organizá tus cuentas y generá reportes en segundos.
             </p>
+
+            <div className="flex gap-4 text-sm text-gray-500">
+              <span>✔ Seguro</span>
+              <span>✔ Simple</span>
+              <span>✔ Rápido</span>
+            </div>
           </div>
+
+          {/* FORM */}
           <AuthForm />
         </div>
       </div>

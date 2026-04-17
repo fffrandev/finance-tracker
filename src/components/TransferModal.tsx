@@ -67,15 +67,17 @@ export default function TransferModal({ open, onClose }: Props) {
             initial={{ scale: 0.95, opacity: 0, y: 30 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.95, opacity: 0 }}
-            className="w-full max-w-md space-y-5 rounded-3xl border border-zinc-200 bg-white p-6 text-black shadow-2xl"
+            className="w-full max-w-md space-y-5 rounded-3xl bg-white p-6 text-black shadow-2xl"
+            style={{ border: '1px solid #dad4c8' }}
           >
             <div className="flex items-center justify-between gap-4">
-              <h2 className="text-xl font-bold text-black">
+              <h2 className="text-[20px] font-bold text-black">
                 Transferir dinero
               </h2>
               <button
                 onClick={onClose}
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 text-zinc-700 transition hover:bg-zinc-50"
+                className="flex h-10 w-10 items-center justify-center rounded-full text-black transition hover:bg-[#faf9f7]"
+                style={{ border: '1px solid #dad4c8' }}
                 aria-label="Cerrar modal"
               >
                 <CloseIcon fontSize="small" />
@@ -88,7 +90,10 @@ export default function TransferModal({ open, onClose }: Props) {
               onChange={(e) =>
                 setForm({ ...form, fromAccountId: e.target.value })
               }
-              className="w-full rounded-xl border border-zinc-200 bg-zinc-50 p-3 text-black outline-none transition focus:border-zinc-400 focus:bg-white"
+              className="w-full rounded-xl border bg-white p-3 text-black outline-none transition focus:ring-2"
+              style={{ borderColor: '#dad4c8' }}
+              onFocus={(e) => (e.currentTarget.style.boxShadow = 'inset 0 0 0 2px #fbbd41')}
+              onBlur={(e) => (e.currentTarget.style.boxShadow = 'none')}
             >
               <option value="">Desde cuenta</option>
               {accounts.map((a) => (
@@ -100,7 +105,7 @@ export default function TransferModal({ open, onClose }: Props) {
 
             {/* SALDO */}
             {form.fromAccountId && (
-              <p className="text-sm text-zinc-500">
+              <p className="text-sm" style={{ color: '#9f9b93' }}>
                 Disponible:{" "}
                 <span className="font-semibold text-black">
                   {formatMoney(selectedBalance, fromAccount?.currency ?? "ARS")}
@@ -114,7 +119,10 @@ export default function TransferModal({ open, onClose }: Props) {
               onChange={(e) =>
                 setForm({ ...form, toAccountId: e.target.value })
               }
-              className="w-full rounded-xl border border-zinc-200 bg-zinc-50 p-3 text-black outline-none transition focus:border-zinc-400 focus:bg-white"
+              className="w-full rounded-xl border bg-white p-3 text-black outline-none transition focus:ring-2"
+              style={{ borderColor: '#dad4c8' }}
+              onFocus={(e) => (e.currentTarget.style.boxShadow = 'inset 0 0 0 2px #fbbd41')}
+              onBlur={(e) => (e.currentTarget.style.boxShadow = 'none')}
             >
               <option value="">Hacia cuenta</option>
               {accounts.map((a) => (
@@ -136,12 +144,15 @@ export default function TransferModal({ open, onClose }: Props) {
                   setForm({ ...form, amount: value });
                 }
               }}
-              className="w-full rounded-xl border border-zinc-200 bg-zinc-50 p-3 text-black outline-none transition focus:border-zinc-400 focus:bg-white"
+              className="w-full rounded-xl border bg-white p-3 text-black outline-none transition focus:ring-2"
+              style={{ borderColor: '#dad4c8' }}
+              onFocus={(e) => (e.currentTarget.style.boxShadow = 'inset 0 0 0 2px #fbbd41')}
+              onBlur={(e) => (e.currentTarget.style.boxShadow = 'none')}
             />
 
             {/* ERROR */}
             {insufficient && (
-              <p className="text-sm text-red-500 font-medium">
+              <p className="text-sm font-medium" style={{ color: '#fc7981' }}>
                 No tenés saldo suficiente
               </p>
             )}
@@ -162,7 +173,7 @@ export default function TransferModal({ open, onClose }: Props) {
               onChange={(e) =>
                 setForm({ ...form, date: e.target.value })
               }
-              className="w-full rounded-xl border border-zinc-200 bg-zinc-50 p-3 text-black outline-none transition focus:border-zinc-400 focus:bg-white"
+              className="w-full rounded-xl border border-blue-200 bg-blue-50 p-3 text-black outline-none transition focus:border-blue-600 focus:bg-white"
             />
 
             {/* BOTÓN PRINCIPAL */}
@@ -171,7 +182,7 @@ export default function TransferModal({ open, onClose }: Props) {
               disabled={insufficient}
               className={`w-full py-3 rounded-xl font-semibold transition ${
                 insufficient
-                  ? "bg-zinc-200 text-zinc-500"
+                  ? "bg-blue-100 text-blue-600"
                   : "bg-[#FACC15] text-black hover:brightness-95"
               }`}
             >
@@ -181,7 +192,7 @@ export default function TransferModal({ open, onClose }: Props) {
             {/* CANCELAR */}
             <button
               onClick={onClose}
-              className="w-full rounded-xl border border-zinc-200 py-3 text-zinc-700 transition hover:bg-zinc-50"
+              className="w-full rounded-xl border border-blue-200 py-3 text-blue-700 transition hover:bg-blue-50"
             >
               Cancelar
             </button>

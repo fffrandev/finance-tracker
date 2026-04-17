@@ -4,7 +4,6 @@ import { useMemo, useState } from "react";
 import { useBudgets } from "@/context/BudgetsContext";
 import { useCategories } from "@/context/CategoriesContext";
 import { useTransactions } from "@/context/TransactionsContext";
-import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
 import { formatMoney, getTransactionBaseAmount } from "@/utils/currency";
 import { getBudgetAlertLabel, getBudgetAlertLevel, getBudgetAlertTone } from "@/utils/finance";
@@ -94,17 +93,16 @@ export default function BudgetsPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between gap-4">
-        <h1 className="text-3xl font-bold">Presupuestos</h1>
+      <div className="flex items-center justify-end gap-4">
         <button
           onClick={() => {
             resetForm();
             setModalOpen(true);
           }}
-          className="flex h-11 w-11 items-center justify-center rounded-full bg-[#FACC15] text-black transition hover:brightness-95"
+          className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-[#fbbd41] to-[#f8cc65] text-black font-bold text-lg transition hover:brightness-95"
           aria-label="Agregar presupuesto"
         >
-          <AddIcon fontSize="small" />
+          +
         </button>
       </div>
 
@@ -119,8 +117,8 @@ export default function BudgetsPage() {
               key={budget.id}
               className="rounded-2xl bg-white p-5 text-black shadow-sm"
             >
-              <p className="text-sm text-zinc-500">{budget.month}</p>
-              <h2 className="mt-1 text-xl font-semibold">
+              <p className="text-sm" style={{ color: '#9f9b93' }}>{budget.month}</p>
+              <h2 className="mt-1 text-[20px] font-semibold">
                 {budget.categoryName}
               </h2>
               {budget.alertLevel !== "none" ? (
@@ -130,26 +128,30 @@ export default function BudgetsPage() {
               ) : null}
 
               <div className="mt-4 space-y-2">
-                <p className="text-sm text-zinc-500">
+                <p className="text-sm" style={{ color: '#9f9b93' }}>
                   Gastado: {formatMoney(budget.spent)}
                 </p>
-                <p className="text-sm text-zinc-500">
+                <p className="text-sm" style={{ color: '#9f9b93' }}>
                   Límite: {formatMoney(budget.amount)}
                 </p>
                 <p
-                  className={`text-sm font-semibold ${
-                    overBudget ? "text-rose-500" : "text-emerald-600"
-                  }`}
+                  className="text-sm font-semibold"
+                  style={{
+                    color: overBudget ? "#fc7981" : "#078a52",
+                  }}
                 >
                   {overBudget ? "Excedido" : "Disponible"}: {formatMoney(Math.abs(budget.remaining))}
                 </p>
               </div>
 
-              <div className="mt-4 h-2 overflow-hidden rounded-full bg-zinc-200">
+              <div className="mt-4 h-2 overflow-hidden rounded-full" style={{ backgroundColor: '#faf9f7' }}>
                 <div
-                  className={`h-full rounded-full ${
-                    overBudget ? "bg-rose-500" : "bg-[#FACC15]"
-                  }`}
+                  className="h-full rounded-full"
+                  style={{
+                    background: overBudget
+                      ? "linear-gradient(to right, #fc7981, #fc4a5a)"
+                      : "linear-gradient(to right, #078a52, #fbbd41)",
+                  }}
                   style={{ width: `${Math.min(progress, 100)}%` }}
                 />
               </div>
@@ -165,7 +167,8 @@ export default function BudgetsPage() {
                     });
                     setModalOpen(true);
                   }}
-                  className="flex-1 rounded-xl border border-zinc-200 px-3 py-2 text-sm font-semibold text-zinc-700 transition hover:bg-zinc-50"
+                      className="flex-1 rounded-xl border px-3 py-2 text-sm font-medium text-black transition hover:bg-[#faf9f7]"
+                      style={{ borderColor: '#dad4c8' }}
                 >
                   Editar
                 </button>
@@ -184,9 +187,9 @@ export default function BudgetsPage() {
 
       {modalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4 backdrop-blur-sm">
-          <div className="w-full max-w-2xl rounded-3xl border border-zinc-200 bg-white p-6 text-black shadow-2xl">
+          <div className="w-full max-w-2xl rounded-3xl bg-white p-6 text-black shadow-2xl" style={{ border: '1px solid #dad4c8' }}>
             <div className="mb-5 flex items-center justify-between gap-4">
-              <h2 className="text-xl font-bold">
+              <h2 className="text-[20px] font-bold">
                 {editingId ? "Editar presupuesto" : "Nuevo presupuesto"}
               </h2>
               <button
@@ -194,7 +197,8 @@ export default function BudgetsPage() {
                   setModalOpen(false);
                   resetForm();
                 }}
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 text-zinc-700 transition hover:bg-zinc-50"
+                className="flex h-10 w-10 items-center justify-center rounded-full text-black transition hover:bg-[#faf9f7]"
+                style={{ border: '1px solid #dad4c8' }}
                 aria-label="Cerrar modal"
               >
                 <CloseIcon fontSize="small" />
@@ -204,7 +208,10 @@ export default function BudgetsPage() {
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid gap-3 md:grid-cols-3">
                 <select
-                  className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-zinc-400 focus:bg-white"
+                  className="rounded-xl border bg-white px-4 py-3 outline-none transition focus:ring-2 text-black"
+                  style={{ borderColor: '#dad4c8' }}
+                  onFocus={(e) => (e.currentTarget.style.boxShadow = 'inset 0 0 0 2px #fbbd41')}
+                  onBlur={(e) => (e.currentTarget.style.boxShadow = 'none')}
                   value={form.categoryId}
                   onChange={(e) =>
                     setForm((current) => ({
@@ -223,7 +230,10 @@ export default function BudgetsPage() {
                 <input
                   type="number"
                   min="1"
-                  className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-zinc-400 focus:bg-white"
+                  className="rounded-xl border bg-white px-4 py-3 outline-none transition focus:ring-2 text-black"
+                  style={{ borderColor: '#dad4c8' }}
+                  onFocus={(e) => (e.currentTarget.style.boxShadow = 'inset 0 0 0 2px #fbbd41')}
+                  onBlur={(e) => (e.currentTarget.style.boxShadow = 'none')}
                   placeholder="Monto"
                   value={form.amount}
                   onChange={(e) =>
@@ -236,7 +246,10 @@ export default function BudgetsPage() {
 
                 <input
                   type="month"
-                  className="rounded-xl border border-zinc-200 bg-zinc-50 px-4 py-3 outline-none transition focus:border-zinc-400 focus:bg-white"
+                  className="rounded-xl border bg-white px-4 py-3 outline-none transition focus:ring-2 text-black"
+                  style={{ borderColor: '#dad4c8' }}
+                  onFocus={(e) => (e.currentTarget.style.boxShadow = 'inset 0 0 0 2px #fbbd41')}
+                  onBlur={(e) => (e.currentTarget.style.boxShadow = 'none')}
                   value={form.month}
                   onChange={(e) =>
                     setForm((current) => ({
@@ -250,7 +263,8 @@ export default function BudgetsPage() {
               <div className="flex justify-center gap-2">
                 <button
                   type="submit"
-                  className="rounded-xl bg-[#FACC15] px-3 py-2 text-sm font-semibold text-black transition hover:brightness-95"
+                  className="flex-1 rounded-xl px-3 py-2 text-sm font-semibold text-black transition hover:brightness-95"
+                  style={{ backgroundColor: '#fbbd41' }}
                 >
                   {editingId ? "Guardar cambios" : "Guardar presupuesto"}
                 </button>
@@ -261,7 +275,8 @@ export default function BudgetsPage() {
                     setModalOpen(false);
                     resetForm();
                   }}
-                  className="rounded-xl border border-zinc-200 px-3 py-2 text-sm font-medium text-zinc-700 transition hover:bg-zinc-50"
+                  className="rounded-xl border px-3 py-2 text-sm font-medium text-black transition"
+                  style={{ borderColor: '#dad4c8' }}
                 >
                   Cancelar
                 </button>

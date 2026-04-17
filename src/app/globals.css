@@ -1,61 +1,317 @@
-/* 1. Cambia las directivas antiguas por el nuevo import de v4 */
+/* Import Fonts First - MUST COME BEFORE ALL OTHER RULES */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+
+/* Import Tailwind CSS */
 @import "tailwindcss";
 
+/* Clay Design System - Root Variables */
 :root {
-  --app-bg: #020617;
-  --app-surface: #181b20;
-  --app-border: #2b313a;
-  --app-text: #f8fafc;
-  --app-muted: #94a3b8;
-  --app-brand: #facc15;
+  /* Primary Colors */
+  --clay-black: #000000;
+  --clay-white: #ffffff;
+  --clay-cream: #faf9f7;
+  
+  /* Swatch Palette - Named Colors */
+  /* Matcha (Green) */
+  --swatch-matcha-300: #84e7a5;
+  --swatch-matcha-600: #078a52;
+  --swatch-matcha-800: #02492a;
+  
+  /* Slushie (Cyan) */
+  --swatch-slushie-500: #3bd3fd;
+  --swatch-slushie-800: #0089ad;
+  
+  /* Lemon (Gold) */
+  --swatch-lemon-400: #f8cc65;
+  --swatch-lemon-500: #fbbd41;
+  --swatch-lemon-700: #d08a11;
+  --swatch-lemon-800: #9d6a09;
+  
+  /* Ube (Purple) */
+  --swatch-ube-300: #c1b0ff;
+  --swatch-ube-800: #43089f;
+  --swatch-ube-900: #32037d;
+  
+  /* Pomegranate (Pink/Red) */
+  --swatch-pomegranate-400: #fc7981;
+  
+  /* Blueberry (Navy) */
+  --swatch-blueberry-800: #01418d;
+  
+  /* Neutral Scale (Warm) */
+  --warm-silver: #9f9b93;
+  --warm-charcoal: #55534e;
+  --dark-charcoal: #333333;
+  
+  /* Surface & Border */
+  --oat-border: #dad4c8;
+  --oat-light: #eee9df;
+  --cool-border: #e6e8ec;
+  --dark-border: #525a69;
+  --light-frost: #eff1f3;
+  
+  /* Shadows - Clay Signature */
+  --shadow-clay: rgba(0,0,0,0.1) 0px 1px 1px, rgba(0,0,0,0.04) 0px -1px 1px inset, rgba(0,0,0,0.05) 0px -0.5px 1px;
+  --shadow-hard: rgb(0,0,0) -7px 7px;
+  
+  /* Focus Ring */
+  --focus-ring: rgb(20, 110, 245) solid 2px;
+}
+
+/* Base Styles */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--app-bg);
-  color: var(--app-text);
+  background-color: var(--clay-cream);
+  color: var(--clay-black);
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+  letter-spacing: 0;
+  font-weight: 400;
 }
 
-.container {
-  @apply max-w-5xl mx-auto px-4;
+/* Typography Hierarchy */
+h1 {
+  font-size: 4rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -3.2px;
+  font-family: 'Manrope', sans-serif;
 }
 
-.card {
-  background: var(--app-surface);
-  border: 1px solid var(--app-border);
-  @apply rounded-2xl p-5 shadow;
+h2 {
+  font-size: 3rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -2.4px;
+  font-family: 'Manrope', sans-serif;
 }
 
-.btn {
-  @apply px-4 py-2 rounded-xl font-medium transition;
+h3 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.88px;
+  font-family: 'Manrope', sans-serif;
 }
 
+h4 {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.64px;
+  font-family: 'Manrope', sans-serif;
+}
+
+h5 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.4px;
+  font-family: 'Manrope', sans-serif;
+}
+
+h6 {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 1.08px;
+  text-transform: uppercase;
+  font-family: 'Manrope', sans-serif;
+}
+
+p {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  letter-spacing: -0.36px;
+}
+
+/* Links */
+a {
+  color: var(--clay-black);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--swatch-slushie-500);
+}
+
+/* Buttons - Clay Style with Playful Hover */
+button, [role="button"] {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+button:hover {
+  transform: rotateZ(-8deg) translateY(-3px);
+  box-shadow: var(--shadow-hard);
+}
+
+button:focus {
+  outline: var(--focus-ring);
+}
+
+/* Primary Button */
 .btn-primary {
-  background: var(--app-brand);
-  color: #020617;
+  background-color: var(--clay-white);
+  color: var(--clay-black);
+  padding: 0.64rem 1.28rem;
+  border-radius: 4px;
+  box-shadow: var(--shadow-clay);
 }
 
-.btn-danger {
-  @apply bg-red-500 text-white hover:bg-red-600;
+.btn-primary:hover {
+  background-color: var(--swatch-lemon-500);
+  color: var(--clay-white);
 }
 
-.input {
-  background: var(--app-surface);
-  border: 1px solid var(--app-border);
-  color: var(--app-text);
-  @apply w-full rounded-xl px-3 py-2 focus:outline-none;
+/* Secondary Button */
+.btn-secondary {
+  background-color: transparent;
+  color: var(--clay-black);
+  padding: 0.64rem 1.28rem;
+  border: 1px solid #717989;
+  border-radius: 4px;
 }
 
-.table {
-  @apply w-full border-collapse;
+.btn-secondary:hover {
+  background-color: var(--swatch-pomegranate-400);
+  color: var(--clay-white);
+  border-color: var(--swatch-pomegranate-400);
 }
 
-.table th {
-  color: var(--app-muted);
-  border-bottom: 1px solid var(--app-border);
-  @apply pb-2 text-left;
+/* Cards & Containers */
+.card, [data-card] {
+  background-color: var(--clay-white);
+  border: 1px solid var(--oat-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: var(--shadow-clay);
+  transition: all 0.3s ease;
 }
 
-.table td {
-  border-bottom: 1px solid var(--app-border);
-  @apply py-3;
+.card:hover, [data-card]:hover {
+  box-shadow: var(--shadow-clay), var(--shadow-hard);
+  transform: translateY(-2px);
+}
+
+/* Feature Cards */
+.card-featured {
+  border-radius: 24px;
+  padding: 2rem;
+}
+
+/* Section Containers */
+.section-container {
+  border-radius: 40px;
+  padding: 2rem;
+}
+
+/* Inputs & Forms */
+input, textarea, select {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.64rem 0.8rem;
+  border: 1px solid #717989;
+  border-radius: 4px;
+  background-color: var(--clay-white);
+  color: var(--clay-black);
+  transition: border-color 0.2s ease;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: var(--focus-ring);
+  border-color: #717989;
+}
+
+/* Swatch Color Sections */
+.section-matcha {
+  background-color: var(--swatch-matcha-600);
+  color: var(--clay-white);
+}
+
+.section-slushie {
+  background-color: var(--swatch-slushie-800);
+  color: var(--clay-white);
+}
+
+.section-ube {
+  background-color: var(--swatch-ube-800);
+  color: var(--clay-white);
+}
+
+.section-lemon {
+  background-color: var(--swatch-lemon-500);
+  color: var(--clay-black);
+}
+
+/* Code & Monospace */
+code, pre {
+  font-family: 'Space Mono', monospace;
+  background-color: var(--light-frost);
+  border: 1px solid var(--oat-light);
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+}
+
+pre {
+  padding: 1rem;
+  overflow-x: auto;
+  line-height: 1.4;
+}
+
+/* Utility Classes */
+.text-warmsilver { color: var(--warm-silver); }
+.text-warmcharcoal { color: var(--warm-charcoal); }
+.text-matcha { color: var(--swatch-matcha-600); }
+.text-slushie { color: var(--swatch-slushie-500); }
+.text-lemon { color: var(--swatch-lemon-500); }
+.text-ube { color: var(--swatch-ube-800); }
+.text-pomegranate { color: var(--swatch-pomegranate-400); }
+.text-blueberry { color: var(--swatch-blueberry-800); }
+
+.bg-cream { background-color: var(--clay-cream); }
+.bg-matcha { background-color: var(--swatch-matcha-600); }
+.bg-slushie { background-color: var(--swatch-slushie-500); }
+.bg-lemon { background-color: var(--swatch-lemon-500); }
+.bg-ube { background-color: var(--swatch-ube-800); }
+.bg-blueberry { background-color: var(--swatch-blueberry-800); }
+
+.border-oat { border-color: var(--oat-border); }
+.border-oat-light { border-color: var(--oat-light); }
+.border-oat-dashed { border: 1px dashed var(--oat-border); }
+
+.shadow-clay { box-shadow: var(--shadow-clay); }
+.shadow-hard { box-shadow: var(--shadow-hard); }
+
+/* Radius System */
+.rounded-card { border-radius: 12px; }
+.rounded-feature { border-radius: 24px; }
+.rounded-section { border-radius: 40px; }
+.rounded-pill { border-radius: 1584px; }
+
+/* Navigation & Layout */
+nav {
+  background-color: var(--clay-cream);
+  border-bottom: 1px solid var(--oat-border);
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  font-family: 'Manrope', sans-serif;
+}
+
+/* Reset Tailwind overrides */
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200;
+  }
 }

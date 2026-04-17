@@ -1,0 +1,1091 @@
+
+> finance-tracker@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.2 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.56:3000
+- Environments: .env.local
+✓ Ready in 138ms
+
+ GET /dashboard 200 in 280ms (next.js: 63ms, application-code: 217ms)
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] Image with src "/_next/static/media/TT.0snbw0lidfy1r.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+ GET /accounts 200 in 59ms (next.js: 23ms, application-code: 35ms)
+ GET /dashboard 200 in 9ms (next.js: 1525µs, application-code: 7ms)
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+ GET /accounts 200 in 18ms (next.js: 3ms, application-code: 16ms)
+ GET /dashboard 200 in 6ms (next.js: 885µs, application-code: 5ms)
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+ GET /accounts 200 in 16ms (next.js: 2ms, application-code: 14ms)
+ GET /transactions 200 in 35ms (next.js: 26ms, application-code: 9ms)
+ GET /transactions?type=income 200 in 18ms (next.js: 3ms, application-code: 15ms)
+ GET /transactions 200 in 20ms (next.js: 4ms, application-code: 17ms)
+ GET /transactions?type=expense 200 in 16ms (next.js: 3ms, application-code: 13ms)
+ GET /transactions 200 in 17ms (next.js: 2ms, application-code: 14ms)
+ GET /transactions?category=transfer 200 in 14ms (next.js: 2ms, application-code: 12ms)
+ GET /transactions 200 in 15ms (next.js: 2ms, application-code: 13ms)
+ GET /budgets 200 in 27ms (next.js: 19ms, application-code: 7ms)
+ GET /transactions 200 in 18ms (next.js: 3ms, application-code: 15ms)
+ GET /budgets 200 in 15ms (next.js: 2ms, application-code: 13ms)
+ GET /categories 200 in 38ms (next.js: 26ms, application-code: 12ms)
+⨯ ./src/app/reports/page.tsx:179:6
+Unterminated regexp literal
+  [90m177 |[0m         </div>
+  [90m178 |[0m       </div>
+[31m[1m>[0m [90m179 |[0m     </div>
+  [90m    |[0m      [31m[1m^^^^^[0m
+  [90m180 |[0m   );
+  [90m181 |[0m }
+  [90m182 |[0m
+
+Parsing ecmascript source code failed
+
+
+ GET /reports 500 in 128ms (next.js: 73ms, application-code: 56ms)
+[browser] ./src/app/reports/page.tsx:179:6
+Unterminated regexp literal
+  177 |         </div>
+  178 |       </div>
+> 179 |     </div>
+      |      ^^^^^
+  180 |   );
+  181 | }
+  182 |
+
+Parsing ecmascript source code failed 
+⨯ ./src/app/reports/page.tsx:179:6
+Unterminated regexp literal
+  [90m177 |[0m         </div>
+  [90m178 |[0m       </div>
+[31m[1m>[0m [90m179 |[0m     </div>
+  [90m    |[0m      [31m[1m^^^^^[0m
+  [90m180 |[0m   );
+  [90m181 |[0m }
+  [90m182 |[0m
+
+Parsing ecmascript source code failed
+
+
+ GET /reports 500 in 9ms (next.js: 5ms, application-code: 4ms)
+[browser] Uncaught Error: ./src/app/reports/page.tsx:179:6
+Unterminated regexp literal
+  177 |         </div>
+  178 |       </div>
+> 179 |     </div>
+      |      ^^^^^
+  180 |   );
+  181 | }
+  182 |
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/reports/page.tsx:179:6)
+    at <unknown> (Error: (./src/app/reports/page.tsx:179:6)
+[browser] ./src/app/reports/page.tsx:179:6
+Unterminated regexp literal
+  177 |         </div>
+  178 |       </div>
+> 179 |     </div>
+      |      ^^^^^
+  180 |   );
+  181 | }
+  182 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/reports/page.tsx:179:6
+Unterminated regexp literal
+  177 |         </div>
+  178 |       </div>
+> 179 |     </div>
+      |      ^^^^^
+  180 |   );
+  181 | }
+  182 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/reports/page.tsx:179:6
+Unterminated regexp literal
+  177 |         </div>
+  178 |       </div>
+> 179 |     </div>
+      |      ^^^^^
+  180 |   );
+  181 | }
+  182 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/reports/page.tsx:179:6
+Unterminated regexp literal
+  177 |         </div>
+  178 |       </div>
+> 179 |     </div>
+      |      ^^^^^
+  180 |   );
+  181 | }
+  182 |
+
+Parsing ecmascript source code failed 
+ GET /categories 500 in 16ms (next.js: 6ms, application-code: 10ms)
+[browser] Uncaught Error: ./src/app/reports/page.tsx:179:6
+Unterminated regexp literal
+  177 |         </div>
+  178 |       </div>
+> 179 |     </div>
+      |      ^^^^^
+  180 |   );
+  181 | }
+  182 |
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/reports/page.tsx:179:6)
+    at <unknown> (Error: (./src/app/reports/page.tsx:179:6)
+[browser] ./src/app/reports/page.tsx:179:6
+Unterminated regexp literal
+  177 |         </div>
+  178 |       </div>
+> 179 |     </div>
+      |      ^^^^^
+  180 |   );
+  181 | }
+  182 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/reports/page.tsx:179:6
+Unterminated regexp literal
+  177 |         </div>
+  178 |       </div>
+> 179 |     </div>
+      |      ^^^^^
+  180 |   );
+  181 | }
+  182 |
+
+Parsing ecmascript source code failed 
+ GET /categories 500 in 14ms (next.js: 4ms, application-code: 10ms)
+[browser] Uncaught Error: ./src/app/reports/page.tsx:179:6
+Unterminated regexp literal
+  177 |         </div>
+  178 |       </div>
+> 179 |     </div>
+      |      ^^^^^
+  180 |   );
+  181 | }
+  182 |
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/reports/page.tsx:179:6)
+    at <unknown> (Error: (./src/app/reports/page.tsx:179:6)
+[browser] ./src/app/reports/page.tsx:179:6
+Unterminated regexp literal
+  177 |         </div>
+  178 |       </div>
+> 179 |     </div>
+      |      ^^^^^
+  180 |   );
+  181 | }
+  182 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/reports/page.tsx:179:6
+Unterminated regexp literal
+  177 |         </div>
+  178 |       </div>
+> 179 |     </div>
+      |      ^^^^^
+  180 |   );
+  181 | }
+  182 |
+
+Parsing ecmascript source code failed 
+ GET /budgets 500 in 15ms (next.js: 8ms, application-code: 8ms)
+[browser] Uncaught Error: ./src/app/reports/page.tsx:179:6
+Unterminated regexp literal
+  177 |         </div>
+  178 |       </div>
+> 179 |     </div>
+      |      ^^^^^
+  180 |   );
+  181 | }
+  182 |
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/reports/page.tsx:179:6)
+    at <unknown> (Error: (./src/app/reports/page.tsx:179:6)
+[browser] ./src/app/reports/page.tsx:179:6
+Unterminated regexp literal
+  177 |         </div>
+  178 |       </div>
+> 179 |     </div>
+      |      ^^^^^
+  180 |   );
+  181 | }
+  182 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/reports/page.tsx:179:6
+Unterminated regexp literal
+  177 |         </div>
+  178 |       </div>
+> 179 |     </div>
+      |      ^^^^^
+  180 |   );
+  181 | }
+  182 |
+
+Parsing ecmascript source code failed 
+ GET /budgets 500 in 10ms (next.js: 4ms, application-code: 6ms)
+[browser] Uncaught Error: ./src/app/reports/page.tsx:179:6
+Unterminated regexp literal
+  177 |         </div>
+  178 |       </div>
+> 179 |     </div>
+      |      ^^^^^
+  180 |   );
+  181 | }
+  182 |
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/reports/page.tsx:179:6)
+    at <unknown> (Error: (./src/app/reports/page.tsx:179:6)
+[browser] ./src/app/reports/page.tsx:179:6
+Unterminated regexp literal
+  177 |         </div>
+  178 |       </div>
+> 179 |     </div>
+      |      ^^^^^
+  180 |   );
+  181 | }
+  182 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/reports/page.tsx:179:6
+Unterminated regexp literal
+  177 |         </div>
+  178 |       </div>
+> 179 |     </div>
+      |      ^^^^^
+  180 |   );
+  181 | }
+  182 |
+
+Parsing ecmascript source code failed 
+✓ Compiled in 116ms
+ GET /budgets 200 in 129ms (next.js: 2ms, application-code: 127ms)
+ GET /budgets 200 in 68ms (next.js: 43ms, application-code: 25ms)
+ GET /saving-goals 200 in 28ms (next.js: 22ms, application-code: 7ms)
+[browser] Uncaught TypeError: Cannot read properties of undefined (reading 'filter')
+    at getSavingGoalProgress (src/utils/finance.ts:52:44)
+    at <unknown> (src/app/saving-goals/page.tsx:83:51)
+    at Array.map (<anonymous>)
+    at SavingGoalsPage (src/app/saving-goals/page.tsx:81:24)
+  50 | ) => {
+  51 |   const account = accounts.find((item) => item.id === goal.accountId);
+> 52 |   const accountTransactions = transactions.filter((item) => item.accountId === goal.accoun...
+     |                                            ^
+  53 |   const currentAmount = accountTransactions.reduce((total, item) => {
+  54 |     return item.type === "income" ? total + item.amount : total - item.amount;
+  55 |   }, 0);
+ GET /budgets 200 in 35ms (next.js: 3ms, application-code: 33ms)
+ GET /reports 200 in 33ms (next.js: 20ms, application-code: 13ms)
+ GET /accounts 200 in 35ms (next.js: 20ms, application-code: 15ms)
+ GET /dashboard 200 in 38ms (next.js: 23ms, application-code: 14ms)
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+ GET /accounts 200 in 20ms (next.js: 7ms, application-code: 12ms)
+ GET /dashboard 200 in 20ms (next.js: 4ms, application-code: 16ms)
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+ GET /transactions 200 in 38ms (next.js: 22ms, application-code: 16ms)
+ GET /budgets 200 in 22ms (next.js: 6ms, application-code: 16ms)
+ GET /categories 200 in 35ms (next.js: 22ms, application-code: 12ms)
+ GET /reports 200 in 14ms (next.js: 5ms, application-code: 10ms)
+ GET /categories 200 in 22ms (next.js: 5ms, application-code: 16ms)
+ GET /budgets 200 in 16ms (next.js: 3ms, application-code: 14ms)
+ GET /transactions 200 in 18ms (next.js: 6ms, application-code: 12ms)
+ GET /accounts 200 in 15ms (next.js: 3ms, application-code: 12ms)
+ GET /dashboard 200 in 24ms (next.js: 8ms, application-code: 17ms)
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+ GET /reports 200 in 22ms (next.js: 5ms, application-code: 17ms)
+ GET /budgets 200 in 20ms (next.js: 5ms, application-code: 15ms)
+ GET /transactions 200 in 20ms (next.js: 5ms, application-code: 15ms)
+ GET /accounts 200 in 17ms (next.js: 5ms, application-code: 12ms)
+ GET /dashboard 200 in 19ms (next.js: 5ms, application-code: 14ms)
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+ GET /accounts 200 in 15ms (next.js: 2ms, application-code: 13ms)
+✓ Compiled in 163ms
+ GET /assets/LOGO.png 404 in 40ms (next.js: 22ms, application-code: 19ms)
+⨯ The requested resource isn't a valid image for /assets/LOGO.png received null
+ GET /accounts 200 in 48ms (next.js: 3ms, application-code: 45ms)
+ GET /assets/LOGO.png 404 in 16ms (next.js: 1345µs, application-code: 15ms)
+⨯ The requested resource isn't a valid image for /assets/LOGO.png received null
+ GET /assets/LOGO.png 404 in 22ms (next.js: 2ms, application-code: 20ms)
+⨯ The requested resource isn't a valid image for /assets/LOGO.png received null
+✓ Compiled in 24ms
+ GET /assets/LOGO.png 404 in 13ms (next.js: 1194µs, application-code: 12ms)
+⨯ The requested resource isn't a valid image for /assets/LOGO.png received null
+✓ Compiled in 20ms
+✓ Compiled in 22ms
+ GET /dashboard 200 in 30ms (next.js: 9ms, application-code: 21ms)
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+ GET /saving-goals 200 in 16ms (next.js: 4ms, application-code: 13ms)
+[browser] Uncaught TypeError: Cannot read properties of undefined (reading 'filter')
+    at getSavingGoalProgress (src/utils/finance.ts:52:44)
+    at <unknown> (src/app/saving-goals/page.tsx:83:51)
+    at Array.map (<anonymous>)
+    at SavingGoalsPage (src/app/saving-goals/page.tsx:81:24)
+  50 | ) => {
+  51 |   const account = accounts.find((item) => item.id === goal.accountId);
+> 52 |   const accountTransactions = transactions.filter((item) => item.accountId === goal.accoun...
+     |                                            ^
+  53 |   const currentAmount = accountTransactions.reduce((total, item) => {
+  54 |     return item.type === "income" ? total + item.amount : total - item.amount;
+  55 |   }, 0);
+ GET /dashboard 200 in 94ms (next.js: 3ms, application-code: 91ms)
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] Image with src "/_next/static/media/TT.0snbw0lidfy1r.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+ GET /assets/LOGO.png 404 in 29ms (next.js: 8ms, application-code: 21ms)
+⨯ The requested resource isn't a valid image for /assets/LOGO.png received null
+✓ Compiled in 343ms
+ GET /dashboard 500 in 19ms (next.js: 8ms, application-code: 12ms)
+ GET /dashboard 500 in 16ms (next.js: 8ms, application-code: 8ms)
+ GET /dashboard 500 in 20ms (next.js: 12ms, application-code: 8ms)
+[browser] Uncaught Error: ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/accounts/page.tsx:143:20)
+    at <unknown> (Error: (./src/app/accounts/page.tsx:143:20)
+[browser] ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed 
+ GET /dashboard 500 in 13ms (next.js: 6ms, application-code: 7ms)
+[browser] Uncaught Error: ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/accounts/page.tsx:143:20)
+    at <unknown> (Error: (./src/app/accounts/page.tsx:143:20)
+[browser] ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed 
+ GET /dashboard 500 in 9ms (next.js: 3ms, application-code: 6ms)
+[browser] Uncaught Error: ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/accounts/page.tsx:143:20)
+    at <unknown> (Error: (./src/app/accounts/page.tsx:143:20)
+[browser] ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed 
+ GET /dashboard 500 in 18ms (next.js: 7ms, application-code: 11ms)
+[browser] Uncaught Error: ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/accounts/page.tsx:143:20)
+    at <unknown> (Error: (./src/app/accounts/page.tsx:143:20)
+[browser] ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed 
+ GET /dashboard 500 in 11ms (next.js: 3ms, application-code: 8ms)
+[browser] Uncaught Error: ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/accounts/page.tsx:143:20)
+    at <unknown> (Error: (./src/app/accounts/page.tsx:143:20)
+[browser] ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed 
+ GET /dashboard 500 in 9ms (next.js: 4ms, application-code: 5ms)
+[browser] Uncaught Error: ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/accounts/page.tsx:143:20)
+    at <unknown> (Error: (./src/app/accounts/page.tsx:143:20)
+[browser] ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed 
+ GET /dashboard 500 in 13ms (next.js: 6ms, application-code: 7ms)
+[browser] Uncaught Error: ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/accounts/page.tsx:143:20)
+    at <unknown> (Error: (./src/app/accounts/page.tsx:143:20)
+[browser] ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed 
+ GET /dashboard 500 in 10ms (next.js: 4ms, application-code: 7ms)
+[browser] Uncaught Error: ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/accounts/page.tsx:143:20)
+    at <unknown> (Error: (./src/app/accounts/page.tsx:143:20)
+[browser] ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed 
+ GET /dashboard 500 in 8ms (next.js: 3ms, application-code: 5ms)
+[browser] Uncaught Error: ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/accounts/page.tsx:143:20)
+    at <unknown> (Error: (./src/app/accounts/page.tsx:143:20)
+[browser] ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed 
+ GET /dashboard 500 in 10ms (next.js: 5ms, application-code: 5ms)
+[browser] Uncaught Error: ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/accounts/page.tsx:143:20)
+    at <unknown> (Error: (./src/app/accounts/page.tsx:143:20)
+[browser] ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed 
+ GET /dashboard 500 in 11ms (next.js: 4ms, application-code: 8ms)
+[browser] Uncaught Error: ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/accounts/page.tsx:143:20)
+    at <unknown> (Error: (./src/app/accounts/page.tsx:143:20)
+[browser] ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/accounts/page.tsx:143:20
+Expected '</', got 'ident'
+  141 |                 </div>
+  142 |
+> 143 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  144 |                   {formatMoney(getAccountBalance(account.id), account...
+  145 |                 </p>
+  146 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/accounts/page.tsx:140:20
+Expected '</', got 'ident'
+  138 |                 </div>
+  139 |
+> 140 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  141 |                   {formatMoney(getAccountBalance(account.id), account...
+  142 |                 </p>
+  143 |
+
+Parsing ecmascript source code failed 
+ GET /dashboard 500 in 7ms (next.js: 2ms, application-code: 5ms)
+[browser] Uncaught Error: ./src/app/accounts/page.tsx:140:20
+Expected '</', got 'ident'
+  138 |                 </div>
+  139 |
+> 140 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  141 |                   {formatMoney(getAccountBalance(account.id), account...
+  142 |                 </p>
+  143 |
+
+Parsing ecmascript source code failed
+
+
+    at <unknown> (Error: ./src/app/accounts/page.tsx:140:20)
+    at <unknown> (Error: (./src/app/accounts/page.tsx:140:20)
+[browser] ./src/app/accounts/page.tsx:140:20
+Expected '</', got 'ident'
+  138 |                 </div>
+  139 |
+> 140 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  141 |                   {formatMoney(getAccountBalance(account.id), account...
+  142 |                 </p>
+  143 |
+
+Parsing ecmascript source code failed 
+[browser] ./src/app/accounts/page.tsx:140:20
+Expected '</', got 'ident'
+  138 |                 </div>
+  139 |
+> 140 |                 <p className="text-3xl font-bold text-white mb-6">
+      |                    ^^^^^^^^^
+  141 |                   {formatMoney(getAccountBalance(account.id), account...
+  142 |                 </p>
+  143 |
+
+Parsing ecmascript source code failed 
+✓ Compiled in 72ms
+ GET /dashboard 200 in 172ms (next.js: 30ms, application-code: 142ms)
+ GET /dashboard 200 in 21ms (next.js: 3ms, application-code: 19ms)
+ GET /assets/LOGO.png 404 in 28ms (next.js: 12ms, application-code: 16ms)
+⨯ The requested resource isn't a valid image for /assets/LOGO.png received null
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+ GET /assets/LOGO.png 404 in 31ms (next.js: 3ms, application-code: 28ms)
+⨯ The requested resource isn't a valid image for /assets/LOGO.png received null
+[browser] Image with src "/_next/static/media/TT.0snbw0lidfy1r.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+ GET /accounts 200 in 30ms (next.js: 18ms, application-code: 12ms)
+ GET /transactions 200 in 34ms (next.js: 20ms, application-code: 14ms)
+ GET /budgets 200 in 24ms (next.js: 15ms, application-code: 9ms)
+ GET /categories 200 in 31ms (next.js: 18ms, application-code: 13ms)
+ GET /reports 200 in 32ms (next.js: 17ms, application-code: 14ms)
+ GET /saving-goals 200 in 32ms (next.js: 19ms, application-code: 13ms)
+ GET /reports 200 in 14ms (next.js: 2ms, application-code: 12ms)
+ GET /categories 200 in 16ms (next.js: 2ms, application-code: 14ms)
+ GET /budgets 200 in 15ms (next.js: 3ms, application-code: 12ms)
+ GET /transactions 200 in 19ms (next.js: 3ms, application-code: 16ms)
+ GET /accounts 200 in 13ms (next.js: 1841µs, application-code: 11ms)
+ GET /dashboard 200 in 18ms (next.js: 2ms, application-code: 16ms)
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.
+[browser] The width(-1) and height(-1) of chart should be greater than 0,
+       please check the style of container, or the props width(100%) and height(100%),
+       or add a minWidth(0) or minHeight(undefined) or use aspect(undefined) to control the
+       height and width.

@@ -27,22 +27,24 @@ export default function DateFilter({ onChange }: Props) {
             setMode("month");
             onChange(currentMonth, null);
           }}
-          className={`px-4 py-1 rounded-full text-sm ${
+          className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${
             mode === "month"
-              ? "bg-[#FACC15] text-black"
-              : "bg-zinc-800 text-[#FACC15] opacity-45"
+              ? "bg-gradient-to-r from-[#fbbd41] to-[#f8cc65] text-black shadow-md"
+              : "bg-[#faf9f7] text-black hover:bg-[#f0ebe3] border"
           }`}
+          style={mode !== "month" ? { borderColor: '#dad4c8' } : {}}
         >
           Mes
         </button>
 
         <button
           onClick={() => setMode("range")}
-          className={`px-4 py-1 rounded-full text-sm ${
+          className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-200 ${
             mode === "range"
-              ? "bg-[#FACC15] text-black"
-              : "bg-zinc-800 text-[#FACC15] opacity-45"
+              ? "bg-gradient-to-r from-[#fbbd41] to-[#f8cc65] text-black shadow-md"
+              : "bg-[#faf9f7] text-black hover:bg-[#f0ebe3] border"
           }`}
+          style={mode !== "range" ? { borderColor: '#dad4c8' } : {}}
         >
           Rango
         </button>
@@ -57,25 +59,25 @@ export default function DateFilter({ onChange }: Props) {
             setMonth(e.target.value);
             onChange(e.target.value, null);
           }}
-          className="bg-zinc-800  text-white px-3 py-2 rounded-xl"
+          className="input"
         />
       ) : (
         <div className="flex gap-3 flex-wrap">
           <input
             type="date"
             onChange={(e) => setStart(e.target.value)}
-            className="bg-zinc-800 px-3 py-2 text-white rounded-xl"
+            className="input flex-1"
           />
 
           <input
             type="date"
             onChange={(e) => setEnd(e.target.value)}
-            className="bg-zinc-800 text-white px-3 py-2 rounded-xl"
+            className="input flex-1"
           />
 
           <button
             onClick={() => start && end && onChange("", { start, end })}
-            className="rounded-xl bg-[#FACC15] px-4 font-semibold text-black"
+            className="btn btn-primary"
           >
             Aplicar
           </button>
