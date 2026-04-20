@@ -6,7 +6,7 @@ import { validatePassword } from "@/utils/auth";
 import type { Setter } from "./shared";
 
 const getEmailRedirectUrl = () => {
-  const envRedirectUrl = process.env.NEXT_PUBLIC_AUTH_REDIRECT_URL?.trim();
+  const envRedirectUrl = "https://transfertracker-tau.vercel.app/auth/callback";
 
   if (envRedirectUrl) {
     return envRedirectUrl;
