@@ -6,17 +6,7 @@ import { validatePassword } from "@/utils/auth";
 import type { Setter } from "./shared";
 
 const getEmailRedirectUrl = () => {
-  const envRedirectUrl = "https://transfertracker-tau.vercel.app/auth/callback";
-
-  if (envRedirectUrl) {
-    return envRedirectUrl;
-  }
-
-  if (typeof window !== "undefined") {
-    return window.location.origin;
-  }
-
-  return undefined;
+  return "https://transfertracker-tau.vercel.app/";
 };
 
 export const bootstrapAuth = async ({
