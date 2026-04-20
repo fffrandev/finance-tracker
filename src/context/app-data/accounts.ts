@@ -4,6 +4,8 @@ import type { Session } from "@supabase/supabase-js";
 import type { Account, AccountType, CurrencyCode } from "@/types/account";
 import type { Transaction } from "@/types/transaction";
 import { mapAccount, type AppDataClient, type Setter } from "./shared";
+import { createClient, SupabaseClient } from "@supabase/supabase-js";
+import { Database } from "@/lib/supabase/database.types";
 
 const getAccountErrorMessage = (message?: string) => {
   switch (message) {
@@ -55,10 +57,10 @@ export const addAccountRecord = async ({
     return null;
   }
 
-  const { data, error } = await db.rpc("create_account", {
+  const { data, error } = await (db.rpc("create_account") as any)({
     p_name: trimmed,
     p_type: type,
-    p_currency: currency,
+    p_currency: currency || null,
   });
 
   if (error || !data) {
@@ -101,7 +103,7 @@ export const updateAccountRecord = async ({
     return null;
   }
 
-  const { data, error } = await db.rpc("update_account", {
+  const { data, error } = await (db.rpc("update_account") as any)({
     p_account_id: id,
     p_name: trimmed,
     p_currency: currency ?? account.currency,
@@ -142,7 +144,7 @@ export const deleteAccountRecord = async ({
     return false;
   }
 
-  const { error } = await db.rpc("delete_account", { p_account_id: id });
+  const { error } = await (db.rpc("delete_account") as any)({ p_account_id: id });
   if (error) {
     console.error(error);
     alert(getAccountErrorMessage(error.message));

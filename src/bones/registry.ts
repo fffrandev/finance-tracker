@@ -1,7 +1,7 @@
 import { registerBones } from 'boneyard-js/react';
 
 // Auth Loading Skeleton
-registerBones('auth-loading', {
+/* registerBones('auth-loading', {
   375: [
     { x: 0, y: 0, w: 100, h: 16, r: 4 },
     { x: 0, y: 24, w: 200, h: 32, r: 4 },
@@ -51,3 +51,4 @@ registerBones('dashboard-page', {
     { x: 'calc(50% + 8px)', y: 344, w: 'calc(50% - 8px)', h: 256, r: 16 },
   ],
 });
+ */

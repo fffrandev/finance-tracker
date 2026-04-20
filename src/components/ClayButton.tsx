@@ -1,12 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ReactNode, ButtonHTMLAttributes } from "react";
+import { ReactNode } from "react";
+import { HTMLMotionProps } from "framer-motion";
 
 type ButtonVariant = "primary" | "secondary" | "swatch";
 type SwatchColor = "matcha" | "slushie" | "lemon" | "ube" | "blueberry" | "pomegranate";
 
-interface ClayButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface ClayButtonProps extends HTMLMotionProps<"button"> {
   variant?: ButtonVariant;
   swatch?: SwatchColor;
   children: ReactNode;

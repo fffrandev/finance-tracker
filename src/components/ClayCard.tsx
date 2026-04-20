@@ -1,9 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ReactNode, HTMLAttributes } from "react";
+import { ReactNode } from "react";
+import { HTMLMotionProps } from "framer-motion";
 
-interface ClayCardProps extends HTMLAttributes<HTMLDivElement> {
+interface ClayCardProps extends HTMLMotionProps<"div"> {
   children: ReactNode;
   featured?: boolean;
   border?: "solid" | "dashed";

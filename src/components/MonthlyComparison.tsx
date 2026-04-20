@@ -1,4 +1,4 @@
-"use client";
+/* "use client";
 
 import { Transaction } from "@/types/transaction";
 import { useMemo } from "react";
@@ -76,7 +76,7 @@ export default function MonthlyComparison({ transactions }: Props) {
       </motion.div>
 
       <motion.div className="grid grid-cols-3 gap-4" variants={containerVariants}>
-        {/* Ingresos */}
+        
         <motion.div
           variants={itemVariants}
           whileHover={{ scale: 1.05, y: -4 }}
@@ -112,7 +112,6 @@ export default function MonthlyComparison({ transactions }: Props) {
           </motion.p>
         </motion.div>
 
-        {/* Gastos */}
         <motion.div
           variants={itemVariants}
           whileHover={{ scale: 1.05, y: -4 }}
@@ -148,7 +147,6 @@ export default function MonthlyComparison({ transactions }: Props) {
           </motion.p>
         </motion.div>
 
-        {/* Balance */}
         <motion.div
           variants={itemVariants}
           whileHover={{ scale: 1.05, y: -4 }}
@@ -187,3 +185,4 @@ export default function MonthlyComparison({ transactions }: Props) {
     </motion.div>
   );
 }
+ */

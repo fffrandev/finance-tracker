@@ -60,7 +60,6 @@ export default function AccountsSummary({ transactions }: Props) {
         return (
           <motion.div
             key={acc.id}
-            variants={cardVariants}
             whileHover={{ y: -6 }}
             className="relative overflow-hidden rounded-[28px] border border-[#dad4c8] bg-white"
             style={{

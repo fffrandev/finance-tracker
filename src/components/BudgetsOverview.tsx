@@ -46,7 +46,7 @@ export default function BudgetsOverview({ budgets = [], transactions = [], categ
   const rows = useMemo(() => {
     return budgets.map((budget) => {
       const spent = transactions
-        .filter((t) => t.type === "expense" && t.categoryId === budget.categoryId)
+        .filter((t) => t.type === "expense" && t.category.id === budget.categoryId)
         .reduce((sum, t) => sum + getTransactionBaseAmount(t), 0);
 
       const category = categories.find((c) => c.id === budget.categoryId);

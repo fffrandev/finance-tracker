@@ -170,7 +170,7 @@ export default function DashboardPage() {
         </AnimatedCard>
 
         <AnimatedCard>
-          <TopCategories transactions={expenseOnly} top={5} />
+          <TopCategories transactions={expenseOnly} />
         </AnimatedCard>
       </div>
 

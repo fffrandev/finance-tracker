@@ -6,17 +6,47 @@ import { useAccounts } from "@/context/AccountsContext";
 import useTransactionsFilters from "@/hooks/useTransactionsFilters";
 import TransactionModal from "@/components/TransactionModal";
 import DateFilter from "@/components/DateFilter";
-import { TransactionInput, TransactionType } from "@/types/transaction";
+import {
+  Transaction,
+  TransactionInput,
+  TransactionType,
+} from "@/types/transaction";
 import { motion, AnimatePresence } from "framer-motion";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import { BASE_CURRENCY, formatMoney, getTransactionBaseAmount } from "@/utils/currency";
+import {
+  BASE_CURRENCY,
+  formatMoney,
+  getTransactionBaseAmount,
+} from "@/utils/currency";
 
 type DateRange = {
   start: string;
   end: string;
 };
+
+type MovementItem = {
+  id: string;
+  type: "movement";
+  data: Transaction;
+};
+
+type TransferItem = {
+  id: string;
+  type: "transfer";
+  data: {
+    incomeId?: string;
+    expenseId?: string;
+    amount: number;
+    date: string;
+    description: string;
+    fromAccountId?: string;
+    toAccountId?: string;
+  };
+};
+
+type ListItem = MovementItem | TransferItem;
 
 function TransactionsPageContent() {
   const {
@@ -59,14 +89,14 @@ function TransactionsPageContent() {
   }, [editingId, getTransaction]);
 
   const accountNameById = useMemo(
-    () =>
-      new Map(accounts.map((account) => [account.id, account.name])),
-    [accounts]
+    () => new Map(accounts.map((account) => [account.id, account.name])),
+    [accounts],
   );
 
   const regularMovements = useMemo(
-    () => filtered.filter((transaction) => transaction.category.id !== "transfer"),
-    [filtered]
+    () =>
+      filtered.filter((transaction) => transaction.category.id !== "transfer"),
+    [filtered],
   );
 
   const transferGroups = useMemo(() => {
@@ -96,7 +126,11 @@ function TransactionsPageContent() {
       }
     >();
 
-    const getTransferKey = (description: string, amount: number, date: string) =>
+    const getTransferKey = (
+      description: string,
+      amount: number,
+      date: string,
+    ) =>
       `${date}|${amount}|${description
         .replace("Transferencia enviada", "Transferencia")
         .replace("Transferencia recibida", "Transferencia")}`;
@@ -105,7 +139,7 @@ function TransactionsPageContent() {
       const key = getTransferKey(
         transaction.description,
         transaction.amount,
-        transaction.date
+        transaction.date,
       );
       const current = grouped.get(key) ?? {
         amount: transaction.amount,
@@ -130,10 +164,10 @@ function TransactionsPageContent() {
   }, [dateRange, month, transactions]);
 
   // Include transfers in type "all"
-  const allItems = useMemo(() => {
-    const items = regularMovements.map((t) => ({
+  const allItems = useMemo<ListItem[]>(() => {
+    const items: ListItem[] = regularMovements.map((t) => ({
       id: t.id,
-      type: "movement" as const,
+      type: "movement",
       data: t,
     }));
 
@@ -144,15 +178,16 @@ function TransactionsPageContent() {
           id: transfer.expenseId ?? transfer.incomeId ?? "",
           type: "transfer" as const,
           data: transfer,
-        }))
+        })),
       );
     }
 
-    return items.sort((a, b) => {
-      const dateA = "date" in a.data ? a.data.date : a.data.date;
-      const dateB = "date" in b.data ? b.data.date : b.data.date;
-      return new Date(dateB).getTime() - new Date(dateA).getTime();
-    });
+return items.sort((a, b) => {
+  const dateA = a.data.date;
+  const dateB = b.data.date;
+
+  return new Date(dateB).getTime() - new Date(dateA).getTime();
+});
   }, [regularMovements, transferGroups, type]);
 
   const handleResetFilter = () => {
@@ -171,15 +206,32 @@ function TransactionsPageContent() {
             {["all", "income", "expense", "transfers"].map((t) => (
               <button
                 key={t}
-                onClick={() => setType(t as "all" | TransactionType | "transfers")}
+                onClick={() =>
+                  setType(t as "all" | TransactionType | "transfers")
+                }
                 className={`px-4 py-2 rounded-full text-sm font-semibold transition ${
-                  type === t
-                    ? "text-black"
-                    : "border transition"
+                  type === t ? "text-black" : "border transition"
                 }`}
-                style={type === t ? { background: 'linear-gradient(to right, #fbbd41, #f8cc65)' } : { backgroundColor: '#faf9f7', borderColor: '#dad4c8', color: '#9f9b93' }}
+                style={
+                  type === t
+                    ? {
+                        background:
+                          "linear-gradient(to right, #fbbd41, #f8cc65)",
+                      }
+                    : {
+                        backgroundColor: "#faf9f7",
+                        borderColor: "#dad4c8",
+                        color: "#9f9b93",
+                      }
+                }
               >
-                {t === "all" ? "Todos" : t === "income" ? "Ingresos" : t === "expense" ? "Gastos" : "Transferencias"}
+                {t === "all"
+                  ? "Todos"
+                  : t === "income"
+                    ? "Ingresos"
+                    : t === "expense"
+                      ? "Gastos"
+                      : "Transferencias"}
               </button>
             ))}
           </div>
@@ -190,7 +242,7 @@ function TransactionsPageContent() {
               value={category}
               onChange={(e) => setCategory(e.target.value)}
               className="rounded-xl border-2 bg-white px-3 py-2 text-sm font-semibold outline-none transition focus:ring-2"
-              style={{ borderColor: '#dad4c8', color: '#9f9b93' }}
+              style={{ borderColor: "#dad4c8", color: "#9f9b93" }}
             >
               <option value="">Categorías</option>
               {categories.map((currentCategory) => (
@@ -204,9 +256,13 @@ function TransactionsPageContent() {
               onClick={() => setFilterOpen(!filterOpen)}
               className="flex h-10 w-10 items-center justify-center rounded-lg transition"
               title="Filtro de fechas"
-              style={{ color: '#9f9b93' }}
-              onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#faf9f7')}
-              onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = 'transparent')}
+              style={{ color: "#9f9b93" }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.backgroundColor = "#faf9f7")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.backgroundColor = "transparent")
+              }
             >
               <CalendarTodayIcon className="w-5 h-5" />
             </button>
@@ -218,7 +274,9 @@ function TransactionsPageContent() {
               }}
               className="flex h-10 w-10 items-center justify-center rounded-full text-black font-bold text-lg transition hover:brightness-95"
               aria-label="Nuevo movimiento"
-              style={{ background: 'linear-gradient(to right, #fbbd41, #f8cc65)' }}
+              style={{
+                background: "linear-gradient(to right, #fbbd41, #f8cc65)",
+              }}
             >
               +
             </button>
@@ -227,8 +285,10 @@ function TransactionsPageContent() {
 
         {/* Collapsible Date Filter - below the buttons */}
         {filterOpen && (
-          <div className="rounded-2xl border-2 bg-white p-4 animate-in fade-in slide-in-from-top"
-               style={{ borderColor: '#dad4c8' }}>
+          <div
+            className="rounded-2xl border-2 bg-white p-4 animate-in fade-in slide-in-from-top"
+            style={{ borderColor: "#dad4c8" }}
+          >
             <DateFilter
               onChange={(selectedMonth, range) => {
                 setDateRange(range);
@@ -246,10 +306,14 @@ function TransactionsPageContent() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="rounded-2xl border-2 py-12 text-center"
-            style={{ borderColor: '#dad4c8', backgroundColor: '#faf9f7' }}
+            style={{ borderColor: "#dad4c8", backgroundColor: "#faf9f7" }}
           >
-            <p className="text-lg font-semibold text-black">No hay movimientos</p>
-            <p className="mt-2 text-sm" style={{ color: '#9f9b93' }}>Crea tu primer movimiento para empezar</p>
+            <p className="text-lg font-semibold text-black">
+              No hay movimientos
+            </p>
+            <p className="mt-2 text-sm" style={{ color: "#9f9b93" }}>
+              Crea tu primer movimiento para empezar
+            </p>
           </motion.div>
         ) : (
           <AnimatePresence>
@@ -284,7 +348,9 @@ function TransactionsPageContent() {
                         >
                           {t.type === "income" ? "Ingreso" : "Gasto"}
                         </span>
-                        <p className="font-bold">{t.category?.name || "Sin categoría"}</p>
+                        <p className="font-bold">
+                          {t.category?.name || "Sin categoría"}
+                        </p>
                       </div>
                       <p className="mt-2 text-sm text-opacity-75">
                         {t.description || "Sin descripción"} • {t.date}
@@ -294,7 +360,10 @@ function TransactionsPageContent() {
                     <div className="flex items-center gap-3">
                       <p className="font-bold">
                         {t.type === "income" ? "+" : "-"}
-                        {formatMoney(getTransactionBaseAmount(t), BASE_CURRENCY)}
+                        {formatMoney(
+                          getTransactionBaseAmount(t),
+                          BASE_CURRENCY,
+                        )}
                       </p>
                       <button
                         onClick={() => {
@@ -330,20 +399,30 @@ function TransactionsPageContent() {
                         <span className="rounded-full bg-sky-200 px-3 py-1 text-xs font-bold text-sky-900">
                           Transferencia
                         </span>
-                        <p className="font-bold">{transfer.description || "Transferencia interna"}</p>
+                        <p className="font-bold">
+                          {transfer.description || "Transferencia interna"}
+                        </p>
                       </div>
                       <p className="mt-2 text-sm text-opacity-75">
-                        {accountNameById.get(transfer.fromAccountId || "") || "Origen"} →{" "}
-                        {accountNameById.get(transfer.toAccountId || "") || "Destino"} • {transfer.date}
+                        {accountNameById.get(transfer.fromAccountId || "") ||
+                          "Origen"}{" "}
+                        →{" "}
+                        {accountNameById.get(transfer.toAccountId || "") ||
+                          "Destino"}{" "}
+                        • {transfer.date}
                       </p>
                     </div>
 
                     <div className="flex items-center gap-3">
-                      <p className="font-bold">{formatMoney(transfer.amount, BASE_CURRENCY)}</p>
+                      <p className="font-bold">
+                        {formatMoney(transfer.amount, BASE_CURRENCY)}
+                      </p>
                       <button
                         onClick={() => {
-                          if (transfer.expenseId) void deleteTransaction(transfer.expenseId);
-                          if (transfer.incomeId) void deleteTransaction(transfer.incomeId);
+                          if (transfer.expenseId)
+                            void deleteTransaction(transfer.expenseId);
+                          if (transfer.incomeId)
+                            void deleteTransaction(transfer.incomeId);
                         }}
                         className="text-opacity-60 hover:text-opacity-100 transition"
                       >
@@ -374,7 +453,16 @@ function TransactionsPageContent() {
 
 export default function TransactionsPage() {
   return (
-    <Suspense fallback={<div className="py-8 text-center font-semibold" style={{ color: '#9f9b93' }}>Cargando movimientos...</div>}>
+    <Suspense
+      fallback={
+        <div
+          className="py-8 text-center font-semibold"
+          style={{ color: "#9f9b93" }}
+        >
+          Cargando movimientos...
+        </div>
+      }
+    >
       <TransactionsPageContent />
     </Suspense>
   );

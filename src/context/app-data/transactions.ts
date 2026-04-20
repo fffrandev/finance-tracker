@@ -56,7 +56,7 @@ export const addTransactionRecord = async ({
     return false;
   }
 
-  const { data: inserted, error } = await db.rpc("create_transaction", {
+  const { data: inserted, error } = await (db.rpc("create_transaction") as any)({
     p_account_id: data.accountId,
     p_category_id: data.categoryId,
     p_type: data.type,
@@ -99,7 +99,7 @@ export const updateTransactionRecord = async ({
     return false;
   }
 
-  const { data: updated, error } = await db.rpc("update_transaction", {
+  const { data: updated, error } = await (db.rpc("update_transaction") as any)({
     p_transaction_id: id,
     p_account_id: data.accountId,
     p_category_id: data.categoryId,
@@ -130,7 +130,7 @@ export const deleteTransactionRecord = async ({
   setTransactions: Setter<Transaction[]>;
   id: string;
 }) => {
-  const { error } = await db.rpc("delete_transaction", { p_transaction_id: id });
+  const { error } = await (db.rpc("delete_transaction") as any)({ p_transaction_id: id });
   if (error) {
     console.error(error);
     alert(getTransactionErrorMessage(error.message));
@@ -168,7 +168,7 @@ export const transferBetweenAccountsRecord = async ({
     return;
   }
 
-  const { error } = await db.rpc("create_transfer", {
+  const { error } = await (db.rpc("create_transfer") as any)({
     p_from_account_id: fromAccountId,
     p_to_account_id: toAccountId,
     p_source_amount: amount,

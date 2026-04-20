@@ -96,7 +96,7 @@ export default function TopCategories({ transactions }: Props) {
           <YAxis type="category" dataKey="name" stroke="#9f9b93" width={95} />
           <Tooltip
             cursor={{ fill: "rgba(218, 212, 200, 0.1)" }}
-            formatter={(value: number) => formatMoney(value)}
+            formatter={(value) => formatMoney(Number(value ?? 0))}
             contentStyle={{
               backgroundColor: "rgba(255, 255, 255, 0.95)",
               border: "2px solid #dad4c8",

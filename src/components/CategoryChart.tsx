@@ -49,8 +49,8 @@ export default function CategoryChart({ transactions }: Props) {
 
         return acc;
       },
-      {}
-    )
+      {},
+    ),
   );
 
   const total = data.reduce((acc, item) => acc + item.value, 0);
@@ -96,16 +96,24 @@ export default function CategoryChart({ transactions }: Props) {
                   paddingAngle={2}
                 >
                   {data.map((_, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={COLORS[index % COLORS.length]}
+                    />
                   ))}
                 </Pie>
                 <Tooltip
-                  formatter={(value: number) => formatMoney(value)}
+                  formatter={(value) =>
+                    formatMoney(
+                      typeof value === "number" ? value : Number(value || 0),
+                    )
+                  }
                   contentStyle={{
                     backgroundColor: "rgba(255, 255, 255, 0.95)",
                     border: "2px solid #dad4c8",
                     borderRadius: "12px",
-                    boxShadow: "rgba(0,0,0,0.1) 0px 1px 1px, rgba(0,0,0,0.04) 0px -1px 1px inset, rgba(0,0,0,0.05) 0px -0.5px 1px",
+                    boxShadow:
+                      "rgba(0,0,0,0.1) 0px 1px 1px, rgba(0,0,0,0.04) 0px -1px 1px inset, rgba(0,0,0,0.05) 0px -0.5px 1px",
                   }}
                 />
               </PieChart>
@@ -122,7 +130,10 @@ export default function CategoryChart({ transactions }: Props) {
               <motion.div
                 key={item.name}
                 className="flex items-center justify-between p-2 rounded-lg transition-all"
-                style={{ backgroundColor: '#faf9f7', border: '1px solid #dad4c8' }}
+                style={{
+                  backgroundColor: "#faf9f7",
+                  border: "1px solid #dad4c8",
+                }}
                 whileHover={{ scale: 1.02 }}
               >
                 <div className="flex items-center gap-2">
@@ -130,7 +141,9 @@ export default function CategoryChart({ transactions }: Props) {
                     className="w-3 h-3 rounded-full"
                     style={{ backgroundColor: COLORS[index % COLORS.length] }}
                   />
-                  <span className="text-xs font-semibold text-black">{item.name}</span>
+                  <span className="text-xs font-semibold text-black">
+                    {item.name}
+                  </span>
                 </div>
                 <motion.span
                   className="text-xs font-bold text-black"
